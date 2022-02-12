@@ -1,5 +1,6 @@
 import axios from "axios";
 const url = "http://localhost:4500/";
+
 const logInUser = () => {
   return null;
 };
@@ -37,8 +38,13 @@ const editBlogEntry = () => {
 };
 
 export const getAllBlogs = async () => {
-  const blogs = await axios.get(`${url}/admin/blogs`);
+  const blogs = await axios.get(`${url}`);
   return blogs;
+};
+
+export const getIndividualBlog = async (blogId) => {
+  const blog = await axios.get(`${url}/admin/blog/${blogId}`);
+  return blog;
 };
 
 const addNewPorfolioProject = () => {

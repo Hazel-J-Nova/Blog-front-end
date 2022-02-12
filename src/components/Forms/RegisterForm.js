@@ -5,22 +5,33 @@ import FormField from "./formField";
 import { registerUser } from "../../utils/api";
 
 const RegisterForm = ({ info }) => {
-  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState();
   const [formInfo, setFormInfo] = useState({
     ...info,
   });
+
   const forms = info.map((el, index) => {
     return <FormField fieldName={el} key={index} />;
   });
 
-  useEffect(() => {
-    const logIn = registerUser(
+  // useEffect(() => {
+  //   const logIn = registerUser(
+  //     formInfo.userName,
+  //     formInfo.email,
+  //     formInfo.password
+  //   );
+  //   console.log(logIn);
+  // }, [hasSubmitted]);
+
+  const handleSubmit = () => {
+    const registerRequest = registerUser(
       formInfo.userName,
       formInfo.email,
       formInfo.password
     );
-    console.log(logIn);
-  }, [hasSubmitted]);
+    setHasSubmitted(registerRequest);
+    console.log(hasSubmitted);
+  };
 
   const handleChange = (event) => {
     setFormInfo((prevFormData) => {

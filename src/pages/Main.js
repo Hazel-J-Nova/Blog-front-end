@@ -15,16 +15,18 @@ const Main = (props) => {
   const [portfolioState, setPortfolioState] = useState([]);
   const [hasInterAcctedState, setInterAcctedState] = useState(false);
   const [blogState, setBlogState] = useState([]);
+  const [userState, setUserState] = useState({});
   const [modal, setModal] = useState(false);
   const Toggle = () => setModal(!modal);
   useEffect(() => {
     const blog = getAllBlogs();
-    setBlogState([...blog]);
-  });
-  const mostRecentBlogs = blogState.slice(0, 4);
-  const blogsToRender = mostRecentBlogs.map((el) => {
-    <Blog title={el.title} imageUrl={el.image.url} blogLink={el.blogLink} />;
-  });
+    setBlogState([blog]);
+  }, []);
+  const mostRecentBlogs = getAllBlogs();
+  // const blogsToRender = mostRecentBlogs.map((el) => {
+  //   console.log(el.image);
+  // });
+  console.log(blogState);
 
   return (
     <div>
@@ -33,7 +35,7 @@ const Main = (props) => {
       <Link to="/BlogForm">BlogForm</Link>|<Link to="/login">Expenses</Link>
       <Intro />
       <AboutMe />
-      <Grid>{mostRecentBlogs}</Grid>
+      {/* <Grid>{mostRecentBlogs}</Grid> */}
       <PortfolioGrid>{portfolioState}</PortfolioGrid>
       <Footer emailAddress="Hazel.J.Tate@gmail.com" />
     </div>
