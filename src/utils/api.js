@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = "http://localhost:4500/";
+const url = "http://localhost:4500";
 
 const logInUser = () => {
   return null;

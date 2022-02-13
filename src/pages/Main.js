@@ -10,6 +10,9 @@ import Portal from "../components/Forms/Modal";
 import { Link, Outlet, Routes, Route } from "react-router-dom";
 import { getAllBlogs } from "../utils/api";
 import Blog from "../components/Main/blog";
+import axios from "axios";
+
+const url = "http://localhost:4500/";
 
 const Main = (props) => {
   const [portfolioState, setPortfolioState] = useState([]);
@@ -19,23 +22,46 @@ const Main = (props) => {
   const [modal, setModal] = useState(false);
   const Toggle = () => setModal(!modal);
   useEffect(() => {
-    const blog = getAllBlogs();
-    setBlogState([blog]);
+    const getUser = async () => {
+      const user = await axios.get(url);
+      setUserState(user);
+      console.log(userState);
+    };
+    getUser();
   }, []);
-  const mostRecentBlogs = getAllBlogs();
-  // const blogsToRender = mostRecentBlogs.map((el) => {
-  //   console.log(el.image);
-  // });
+
+  useEffect(() => {
+    const getAllBlogs = async () => {
+      const blogs = await axios.get(`${url}admin/blog`);
+      setBlogState([...blogs.data]);
+    };
+    getAllBlogs();
+  }, []);
+
+  const blogsToRender = blogState.map((el) => {
+    return (
+      <Blog
+        imgUrl={el.img.url}
+        blogTitle={el.title}
+        intoText={el.body}
+        blogLink="#"
+        key={el._id}
+        blogLink={el._id}
+      >
+        {" "}
+        {el.img.url}
+      </Blog>
+    );
+  });
   console.log(blogState);
 
   return (
     <div>
       <Header />
-      <Outlet />
       <Link to="/BlogForm">BlogForm</Link>|<Link to="/login">Expenses</Link>
       <Intro />
       <AboutMe />
-      {/* <Grid>{mostRecentBlogs}</Grid> */}
+      {<Grid>{blogsToRender}</Grid>}
       <PortfolioGrid>{portfolioState}</PortfolioGrid>
       <Footer emailAddress="Hazel.J.Tate@gmail.com" />
     </div>

@@ -7,24 +7,17 @@ import Invoices from "./Invoices";
 import Main from "./pages/Main";
 import Modal from "./components/Forms/Modal";
 import Portal from "./components/Forms/Modal";
+import IndividualBlogPage from "./pages/IndividualBlogPage";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main />}>
-          <Route path="BlogForm" element={<BlogForm />} />
-          <Route path="login" element={<LogIn />} />
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>There's nothing here!</p>
-              </main>
-            }
-          />
-        </Route>
+        <Route path="/" element={<Main />} />
+        <Route path="BlogForm" element={<BlogForm />} />
+        <Route path="login" element={<LogIn />} />
+        <Route path="blog/:id" element={<IndividualBlogPage />} />
       </Routes>
     </BrowserRouter>
   );

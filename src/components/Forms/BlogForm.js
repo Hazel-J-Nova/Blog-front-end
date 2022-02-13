@@ -13,7 +13,7 @@ const BlogForm = () => {
 
   const axiosSubmit = (event) => {
     event.preventDefault();
-    console.log(formInfo.image);
+
     let formData = new FormData();
     let fileData = formInfo.image;
     let sendUrl = `http://localhost:4500/admin/blog`;
@@ -82,6 +82,7 @@ const BlogForm = () => {
             rows="3"
             onChange={handleChange}
             value={formInfo.blogBody}
+            resize="none"
           ></textarea>
         </div>
         <div className="mb-3">

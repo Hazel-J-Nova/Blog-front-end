@@ -1,18 +1,19 @@
 import "./blog.scss";
+import { Link } from "react-router-dom";
 
 const Blog = (props) => {
   return (
     <div class="card">
       <div class="card__img">
-        <img src={props.imgURL} alt="props.altText" />
+        {/* <img src={props.imgUrl} alt="props.altText" /> */}
       </div>
       <div class="card__contenido">
-        <h3 class="card__title">{props.blogTitle}</h3>
+        <h3 class="card__title">HEy this is text</h3>
         <div class="divider"></div>
-        <p class="card__text">{props.introText}</p>
-        <a href={props.blogLink} class="card__readbtn">
+        <h1 color="black">Hey blargh</h1>
+        <Link to={`/blog/${props.blogLink}`} class="card__readbtn">
           read more
-        </a>
+        </Link>
       </div>
     </div>
   );

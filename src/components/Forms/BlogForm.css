@@ -16,3 +16,8 @@ input[type=text] {
 .container {
     margin: auto;
 }
+
+textarea {
+    resize: none;
+    height: 50vh;
+}
