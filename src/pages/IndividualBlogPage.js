@@ -2,6 +2,8 @@ import Header from "../components/Main/Header";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getIndividualBlog } from "../utils/api";
+import Footer from "../components/Main/Footer";
+import BlogEntry from "../components/Blog/BlogEntry";
 
 const IndividualBlogPage = () => {
   const id = useParams();
@@ -14,8 +16,13 @@ const IndividualBlogPage = () => {
     };
     blog();
   }, []);
-  console.log(blogState);
-  return <h1>Hello This is the blog page for {id.id}</h1>;
+  return (
+    <div>
+      <Header></Header>
+      <BlogEntry></BlogEntry>
+      <Footer></Footer>
+    </div>
+  );
 };
 
 export default IndividualBlogPage;

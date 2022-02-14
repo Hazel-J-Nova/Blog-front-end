@@ -9,8 +9,10 @@ import Modal from "../components/Forms/Modal";
 import Portal from "../components/Forms/Modal";
 import { Link, Outlet, Routes, Route } from "react-router-dom";
 import { getAllBlogs } from "../utils/api";
-import Blog from "../components/Main/blog";
+import Blog from "../components/Main/BlogCard";
 import axios from "axios";
+import { Editor, EditorState } from "draft-js";
+import "draft-js/dist/Draft.css";
 
 const url = "http://localhost:4500/";
 
@@ -53,13 +55,16 @@ const Main = (props) => {
       </Blog>
     );
   });
-  console.log(blogState);
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty()
+  );
 
   return (
     <div>
       <Header />
       <Link to="/BlogForm">BlogForm</Link>|<Link to="/login">Expenses</Link>
       <Intro />
+      <Editor editorState={editorState} onChange={setEditorState} />
       <AboutMe />
       {<Grid>{blogsToRender}</Grid>}
       <PortfolioGrid>{portfolioState}</PortfolioGrid>

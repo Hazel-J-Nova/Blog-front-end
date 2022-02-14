@@ -3,6 +3,7 @@ import axios from "axios";
 import FormData from "form-data";
 
 import { useState } from "react";
+import TextEditor from "./TextEditor";
 
 const BlogForm = () => {
   const [formInfo, setFormInfo] = useState({
@@ -75,15 +76,14 @@ const BlogForm = () => {
 
         <div className="form-group">
           <label htmlFor="project-body">Blog body</label>
-          <textarea
+
+          <TextEditor
             className="form-control text-area"
-            name="blogBody"
             id="blogBody"
-            rows="3"
+            name="blogBody"
             onChange={handleChange}
             value={formInfo.blogBody}
-            resize="none"
-          ></textarea>
+          />
         </div>
         <div className="mb-3">
           <div className="form-file custom-file">

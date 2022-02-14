@@ -1,4 +1,4 @@
-import "./blog.scss";
+import "./BlogCard.scss";
 import { Link } from "react-router-dom";
 
 const Blog = (props) => {
