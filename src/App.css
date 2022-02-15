@@ -69,12 +69,11 @@ img {
   letter-spacing: 2px;
   font-weight: var(--fw-bold);
   margin-bottom: 2em;
-  transition: transform 200ms ease-in-out;
+  margin-left: .5em;
+  margin-right: .5em;
+ 
 }
 
-.btn:hover {
-  transform: scale(1.1);
-}
 
 section {
   padding: 5em, 2em;

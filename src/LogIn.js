@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Modal from "./components/Forms/Modal";
 import LoginForm from "./components/Forms/LogInForm";
-import RegisterForm from "./components/Forms/RegisterForm";
+import UserForm from "./components/Forms/UserForm";
 
 export default function LogIn({ children, onClose, open }) {
   const loginFormInfo = {
@@ -37,9 +37,9 @@ export default function LogIn({ children, onClose, open }) {
         <LoginForm sentFormInfo={loginFormInfo} />
       </Modal>
       <Modal show={registerForm} title="Register" close={ToggleRegisterForm}>
-        <RegisterForm
+        <UserForm
           info={["username", "email", "password", "confirmPassword"]}
-        ></RegisterForm>
+        ></UserForm>
       </Modal>
     </div>
   );

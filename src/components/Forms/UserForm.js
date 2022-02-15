@@ -4,7 +4,7 @@ import useOnClickOutside from "../../utils/Hooks/useOnClickOutside";
 import FormField from "./formField";
 import { registerUser } from "../../utils/api";
 
-const RegisterForm = ({ info }) => {
+const UserForm = ({ info }) => {
   const [hasSubmitted, setHasSubmitted] = useState();
   const [formInfo, setFormInfo] = useState({
     ...info,
@@ -14,15 +14,6 @@ const RegisterForm = ({ info }) => {
     return <FormField fieldName={el} key={index} />;
   });
 
-  // useEffect(() => {
-  //   const logIn = registerUser(
-  //     formInfo.userName,
-  //     formInfo.email,
-  //     formInfo.password
-  //   );
-  //   console.log(logIn);
-  // }, [hasSubmitted]);
-
   const handleSubmit = () => {
     const registerRequest = registerUser(
       formInfo.userName,
@@ -30,7 +21,6 @@ const RegisterForm = ({ info }) => {
       formInfo.password
     );
     setHasSubmitted(registerRequest);
-    console.log(hasSubmitted);
   };
 
   const handleChange = (event) => {
@@ -84,4 +74,4 @@ const RegisterForm = ({ info }) => {
   );
 };
 
-export default RegisterForm;
+export default UserForm;

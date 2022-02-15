@@ -27,7 +27,6 @@ const Main = (props) => {
     const getUser = async () => {
       const user = await axios.get(url);
       setUserState(user);
-      console.log(userState);
     };
     getUser();
   }, []);
@@ -36,6 +35,7 @@ const Main = (props) => {
     const getAllBlogs = async () => {
       const blogs = await axios.get(`${url}admin/blog`);
       setBlogState([...blogs.data]);
+      console.log("aaaa");
     };
     getAllBlogs();
   }, []);
@@ -55,16 +55,12 @@ const Main = (props) => {
       </Blog>
     );
   });
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
-  );
 
   return (
     <div>
       <Header />
       <Link to="/BlogForm">BlogForm</Link>|<Link to="/login">Expenses</Link>
       <Intro />
-      <Editor editorState={editorState} onChange={setEditorState} />
       <AboutMe />
       {<Grid>{blogsToRender}</Grid>}
       <PortfolioGrid>{portfolioState}</PortfolioGrid>

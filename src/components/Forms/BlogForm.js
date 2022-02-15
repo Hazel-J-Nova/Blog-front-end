@@ -83,6 +83,9 @@ const BlogForm = () => {
             name="blogBody"
             onChange={handleChange}
             value={formInfo.blogBody}
+            getBlogBody={setFormInfo}
+            formInfo={formInfo}
+            blogBody={formInfo.blogBody}
           />
         </div>
         <div className="mb-3">

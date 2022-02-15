@@ -10,28 +10,51 @@ const navLinks = document.querySelectorAll(".nav__link");
 
 let toggleNav = () => document.body.classList.toggle("nav-open");
 
-const Header = () => {
+const Header = (props) => {
   return (
-    <header>
-      <div className="logo">
-        <img src="img/devjane.png" alt="" />
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          Home
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="navbar-nav ml-auto">
+            <button className="btn ">
+              <a class="nav-link" href="/users/register">
+                sign up
+              </a>
+            </button>
+            <button className="btn ">
+              <a class="nav-link" href="/users/register">
+                sign up
+              </a>
+            </button>
+
+            <button className="btn ">
+              <a class="nav-link" href="/users/register">
+                sign up
+              </a>
+            </button>
+            <button className="btn ">
+              <a class="nav-link" href="/users/register">
+                sign up
+              </a>
+            </button>
+          </div>
+        </div>
       </div>
-      <button
-        className="nav-toggle"
-        aria-label="toggle navigation"
-        onClick={toggleNav}
-      >
-        <span className="hamburger"></span>
-      </button>
-      <nav className="nav">
-        <ul className="nav__list">
-          <NavItem name="Home" />
-          <NavItem name="Services" />
-          <NavItem name="About Me" />
-          <NavItem name="portfolio" />
-        </ul>
-      </nav>
-    </header>
+    </nav>
   );
 };
 
