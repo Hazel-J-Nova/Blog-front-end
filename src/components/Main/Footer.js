@@ -1,11 +1,20 @@
-import react from "react";
+import react, { useState } from "react";
+import Modal from "../Forms/Modal";
+import UserForm from "../Forms/UserForm";
 
 const Footer = (props) => {
+  const emailForm = ["emailAddress", "subject", "message"];
+  const [email, setEmail] = useState(false);
+  const ToggleEmail = () => {
+    setEmail((previosModalState) => {
+      return !previosModalState;
+    });
+  };
   return (
     <footer className="footer">
-      <a href=":mailto:{props.emailAddress}" className="footer__link">
+      <p onClick={ToggleEmail} className="footer__link">
         {props.emailAddress}
-      </a>
+      </p>
       <ul className="social-list">
         <li className="social-list__item">
           <a className="social-list__link" href="#">
@@ -23,6 +32,9 @@ const Footer = (props) => {
           </a>
         </li>
       </ul>
+      <Modal show={email} title="Register" close={ToggleEmail}>
+        <UserForm info={emailForm}></UserForm>
+      </Modal>
     </footer>
   );
 };
