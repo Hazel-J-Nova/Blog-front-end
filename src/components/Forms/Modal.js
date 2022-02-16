@@ -15,18 +15,19 @@ export default function Modal(props) {
   const closeModal = () => {
     close(closeId);
   };
-  useLockBodyScroll();
+  useLockBodyScroll(props.show);
   useOnClickOutside(ref, () => closeModal());
   const modalContentToRender = (
     <div>
-      {props.show ? (
-        <div ref={ref}>
-          {props.children}
-          {}
-        </div>
-      ) : (
-        <button onClick={props.close}>Open Modal</button>
-      )}
+      {
+        props.show ? (
+          <div ref={ref}>
+            {props.children}
+            {}
+          </div>
+        ) : null
+        // <button onClick={props.close}>Open Modal</button>
+      }
     </div>
   );
   return ReactDOM.createPortal(

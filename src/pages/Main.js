@@ -12,7 +12,6 @@ import { getAllBlogs } from "../utils/api";
 import Blog from "../components/Main/BlogCard";
 import axios from "axios";
 import { Editor, EditorState } from "draft-js";
-import "draft-js/dist/Draft.css";
 
 const url = "http://localhost:4500/";
 
@@ -35,7 +34,7 @@ const Main = (props) => {
     const getAllBlogs = async () => {
       const blogs = await axios.get(`${url}admin/blog`);
       setBlogState([...blogs.data]);
-      console.log("aaaa");
+      console.log(blogState);
     };
     getAllBlogs();
   }, []);
@@ -58,8 +57,7 @@ const Main = (props) => {
 
   return (
     <div>
-      <Header />
-      <Link to="/BlogForm">BlogForm</Link>|<Link to="/login">Expenses</Link>
+      <Header user={userState} setUserState={setUserState} />
       <Intro />
       <AboutMe />
       {<Grid>{blogsToRender}</Grid>}

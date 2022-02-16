@@ -9,7 +9,6 @@ export default function LogIn({ children, onClose, open }) {
     password: "",
   };
   const registerFormInfo = ["username, email, password, confirmPassword"];
-  console.log(registerFormInfo);
   const [modal, setModal] = useState(false);
   const [registerForm, setRegisterForm] = useState(false);
   const Toggle = () => {
