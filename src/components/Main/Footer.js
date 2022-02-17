@@ -32,8 +32,8 @@ const Footer = (props) => {
           </a>
         </li>
       </ul>
-      <Modal show={email} title="Register" close={ToggleEmail}>
-        <UserForm info={emailForm}></UserForm>
+      <Modal show={email} title="Email Me" close={ToggleEmail}>
+        <UserForm info={emailForm} title="Email Me"></UserForm>
       </Modal>
     </footer>
   );

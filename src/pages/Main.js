@@ -39,7 +39,7 @@ const Main = (props) => {
     getAllBlogs();
   }, []);
 
-  const blogsToRender = blogState.map((el) => {
+  const blogsToRender = blogState.slice(0, 4).map((el) => {
     return (
       <Blog
         imgUrl={el.img.url}
@@ -61,6 +61,10 @@ const Main = (props) => {
       <Intro />
       <AboutMe />
       {<Grid>{blogsToRender}</Grid>}
+      <Link to={`blogs`}>
+        <h1 className="centered">All Blogs</h1>
+      </Link>
+
       <PortfolioGrid>{portfolioState}</PortfolioGrid>
       <Footer emailAddress="Hazel.J.Tate@gmail.com" />
     </div>

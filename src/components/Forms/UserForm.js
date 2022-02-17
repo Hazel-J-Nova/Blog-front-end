@@ -3,17 +3,45 @@ import "./LoginForm.css";
 import useOnClickOutside from "../../utils/Hooks/useOnClickOutside";
 import FormField from "./formField";
 import { registerUser } from "../../utils/api";
+import LogIn from "../../LogIn";
 
-const UserForm = ({ info }) => {
+const UserForm = ({ info, title }) => {
   const [hasSubmitted, setHasSubmitted] = useState();
+  const [emailState, setEmailState] = useState(null);
   const [formInfo, setFormInfo] = useState({
     ...info,
   });
-
+  const [buttonState, setButtonState] = useState(null);
   const forms = info.map((el, index) => {
     return <FormField fieldName={el} key={index} />;
   });
-
+  useEffect(() => {
+    setEmailState(
+      title === "Email Me" ? (
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+      ) : null
+    );
+  }, []);
+  useEffect(() => {
+    setButtonState(
+      title === "LogIn" ? (
+        <div>
+          <a href="/users/resetPassword">
+            {" "}
+            <button className="btn btn-success btn-block">
+              Forgot password?
+            </button>
+          </a>
+          <a href="/users/forgotUsername">
+            {" "}
+            <button className="btn btn-success btn-block">
+              Forgot password?
+            </button>
+          </a>
+        </div>
+      ) : null
+    );
+  }, []);
   const handleSubmit = () => {
     const registerRequest = registerUser(
       formInfo.userName,
@@ -29,6 +57,7 @@ const UserForm = ({ info }) => {
     });
   };
 
+  console.log(buttonState);
   return (
     <div className="col-md-6 offset-md-3 col-xl-4 offset-xl-4 overlayStyles">
       <div className="card shadow modalStyle">
@@ -37,16 +66,12 @@ const UserForm = ({ info }) => {
           alt=""
           className="card-img-top"
         />
-        <form
-          action="/users/login"
-          method="POST"
-          className="validated-form"
-          novalidate
-        >
+        <form>
           <div className="card-body">
-            <h5 className="card-title">Login</h5>
+            <h5 className="card-title">{title}</h5>
             {forms}
           </div>
+          {title === "email" && emailState}
           <button
             className="btn btn-success btn-block"
             onClick={(e) => {
@@ -54,21 +79,11 @@ const UserForm = ({ info }) => {
               setHasSubmitted(!hasSubmitted);
             }}
           >
-            Login
+            {title}
           </button>
         </form>
-        <a href="/users/resetPassword">
-          {" "}
-          <button className="btn btn-success btn-block">
-            Forgot password?
-          </button>
-        </a>
-        <a href="/users/forgotUsername">
-          {" "}
-          <button className="btn btn-success btn-block">
-            Forgot password?
-          </button>
-        </a>
+
+        {title === "LogIn" && buttonState}
       </div>
     </div>
   );

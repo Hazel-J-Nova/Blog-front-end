@@ -8,6 +8,7 @@ import Main from "./pages/Main";
 import Modal from "./components/Forms/Modal";
 import Portal from "./components/Forms/Modal";
 import IndividualBlogPage from "./pages/IndividualBlogPage";
+import AllBlogs from "./pages/AllBlogs";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="BlogForm" element={<BlogForm />} />
         <Route path="login" element={<LogIn />} />
+        <Route path="blogs" element={<AllBlogs />} />
         <Route path="blog/:id" element={<IndividualBlogPage />} />
       </Routes>
     </BrowserRouter>

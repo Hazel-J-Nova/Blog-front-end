@@ -20,6 +20,7 @@ const IndividualBlogPage = () => {
     <div>
       <Header></Header>
       <BlogEntry></BlogEntry>
+      <Footer />
     </div>
   );
 };

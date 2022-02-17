@@ -47,11 +47,6 @@ const Header = (props) => {
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav ml-auto">
-              <button className="btn ">
-                <a class="nav-link" href="/users/register">
-                  sign up
-                </a>
-              </button>
               <span>
                 <button className="btn " onClick={Toggle}>
                   log in
@@ -79,7 +74,7 @@ const Header = (props) => {
         ></UserForm>
       </Modal>
       <Modal show={modal} title="Login" close={Toggle}>
-        <UserForm info={["username", "password"]}></UserForm>
+        <UserForm info={["username", "password"]} title="LogIn"></UserForm>
       </Modal>
     </div>
   );

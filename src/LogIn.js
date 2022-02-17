@@ -33,7 +33,7 @@ export default function LogIn({ children, onClose, open }) {
       </span>
 
       <Modal show={modal} title="My Modal" close={Toggle} id="login">
-        <LoginForm sentFormInfo={loginFormInfo} />
+        <LoginForm sentFormInfo={loginFormInfo} title="Login" />
       </Modal>
       <Modal show={registerForm} title="Register" close={ToggleRegisterForm}>
         <UserForm

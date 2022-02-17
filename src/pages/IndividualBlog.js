@@ -16,3 +16,5 @@ const IndividualBlog = (props) => {
     </div>
   );
 };
+
+export default IndividualBlog;
