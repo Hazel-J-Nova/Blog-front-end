@@ -37,12 +37,14 @@
 // Blog header
 //-------------------------
 .blog-cover {
-    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/yosemite-3.jpg");
+    
     background-size: cover;
     border-radius: 5px 5px 0 0;
     height: 15rem;
     box-shadow: inset hsla(0, 0, 0, .2) 0 64px 64px 16px;
 }
+
+
 
 .blog-author,
 .blog-author--no-cover {
@@ -51,9 +53,9 @@
     width: 80%;
 }
 
-.blog-author h3::before,
-.blog-author--no-cover h3::before {
-    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/russ.jpeg");
+.blog-author h4::before,
+.blog-author--no-cover h4::before {
+    background: url("https://scontent-dfw5-2.xx.fbcdn.net/v/t39.30808-6/245161677_1135823816949426_4780094179307406669_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=_oVn9gBQJVYAX9XacN2&_nc_ht=scontent-dfw5-2.xx&oh=00_AT9EMSny_TM9mg95lrrXr396KaZa6hmtkJe2s2lfurLLBQ&oe=62157649");
     background-size: cover;
     border-radius: 50%;
     content: " ";
@@ -89,7 +91,7 @@
 
 .blog-title h1 a {
     color: #333;
-    font-weight: 100;
+    
 }
 
 .blog-summary p {

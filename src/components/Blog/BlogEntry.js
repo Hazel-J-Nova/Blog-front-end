@@ -1,70 +1,87 @@
+import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import "./BlogEntry.scss";
 import CommentCard from "./CommentCard";
+import parse from "html-react-parser";
+import getAmountOfTime from "../../utils/date";
+import TextEditor from "../Forms/TextEditor";
 
 const BlogEntry = (props) => {
+  const fullBlogOrBlogLink = props.blogBody ? (
+    <p>{parse(props.individualBlogState.body)}</p>
+  ) : (
+    <h4>
+      <Link to={`/blog/${props.individualBlogState._id}`}>{props.Link}</Link>
+    </h4>
+  );
+
+  const textEdditor = props.singleBlog ? (
+    <div className="form-group">
+      <label htmlFor="project-body">Blog body</label>
+
+      <TextEditor
+        className="form-control text-area"
+        id="blogBody"
+        name="blogBody"
+        //   onChange={handleChange}
+        //   value={formInfo.blogBody}
+        //   getBlogBody={setFormInfo}
+        //   formInfo={formInfo}
+        //   blogBody={formInfo.blogBody}
+      />
+    </div>
+  ) : null;
+
+  const today = new Date();
+  const datePosted = new Date(props.individualBlogState.date);
+  const [timeSincePosted, timeSincePostedFormatting] = getAmountOfTime(
+    today,
+    datePosted
+  );
+
   return (
     <div>
       <div className="blog-container">
         <div className="blog-header">
-          <div className="blog-cover">
-            <div className="blog-author">
-              <h3>Russ Beye</h3>
+          <div>
+            <div className="blog-author--no-cover">
+              <h4>Hazel Tate</h4>
             </div>
           </div>
         </div>
 
         <div className="blog-body">
           <div className="blog-title">
-            <h1>
-              <a href="#">I Like To Make Cool Things</a>
-            </h1>
+            <h4>{props.individualBlogState.title}</h4>
           </div>
           <div className="blog-summary">
-            <p>
-              I love working on fresh designs that{" "}
-              <a href="https://www.youtube.com/watch?v=hANtM1vJvOo">breathe</a>.
-              To that end, I need to freshen up my portfolio here because it
-              does exactly the opposite. For the next month I will be working
-              almost exclusively on my portfolio. Sounds like a lot of fun!
-            </p>
+            <p>{props.individualBlogState.introText}</p>
+            {fullBlogOrBlogLink}
           </div>
-          <div className="blog-tags">
-            <ul>
-              <li>
-                <a href="#">css</a>
-              </li>
-              <li>
-                <a href="#">web design</a>
-              </li>
-              <li>
-                <a href="#">codepen</a>
-              </li>
-              <li>
-                <a href="https://twitter.com/russbeye">twitter</a>
-              </li>
-            </ul>
-          </div>
+          <div className="blog-tags">{/* <ul>{blogTags}</ul> */}</div>
         </div>
 
         <div className="blog-footer">
           <ul>
-            <li className="published-date">2 days ago</li>
+            <li className="published-date">
+              {timeSincePosted} {timeSincePostedFormatting}
+            </li>
             <li className="comments">
               <a href="#">
                 <svg className="icon-bubble"></svg>
-                <span className="numero">4</span>
+                <span className="numero"></span>
               </a>
             </li>
             <li className="shares">
               <a href="#">
                 <svg className="icon-star"></svg>
-                <span className="numero">1</span>
+                <span className="numero"></span>
               </a>
             </li>
           </ul>
         </div>
-        <CommentCard />
-        <CommentCard></CommentCard>
+        <> {props.children} </>
+        {textEdditor}
       </div>
     </div>
   );

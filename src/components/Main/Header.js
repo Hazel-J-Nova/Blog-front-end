@@ -2,6 +2,8 @@ import react, { useEffect, useRef, useState } from "react";
 import NavItem from "./navItem";
 import Modal from "../Forms/Modal";
 import UserForm from "../Forms/UserForm";
+import { Link } from "react-router-dom";
+
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelectorAll(".nav__link");
 
@@ -31,9 +33,9 @@ const Header = (props) => {
     <div>
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">
-            Home
-          </a>
+          <button className="btn">
+            <Link to="/"> home </Link>
+          </button>
           <button
             class="navbar-toggler"
             type="button"
@@ -57,12 +59,6 @@ const Header = (props) => {
                   sign up
                 </button>
               </span>
-
-              <button className="btn ">
-                <a class="nav-link" href="/users/register">
-                  sign up
-                </a>
-              </button>
             </div>
           </div>
         </div>

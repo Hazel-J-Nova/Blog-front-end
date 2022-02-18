@@ -30,7 +30,6 @@ const TextEditor = ({ formInfo, getBlogBody, blogBody }) => {
   };
   return (
     <div className="App">
-      <header className="App-header">Rich Text Editor Example</header>
       <Editor
         editorState={editorState}
         onEditorStateChange={handleEditorChange}
@@ -38,10 +37,6 @@ const TextEditor = ({ formInfo, getBlogBody, blogBody }) => {
         editorClassName="editor-class"
         toolbarClassName="toolbar-class"
       />
-      <div
-        className="preview"
-        dangerouslySetInnerHTML={createMarkup(convertedContent)}
-      ></div>
     </div>
   );
 };

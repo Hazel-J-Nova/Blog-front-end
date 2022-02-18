@@ -15,26 +15,17 @@ import { Editor, EditorState } from "draft-js";
 
 const url = "http://localhost:4500/";
 
-const Main = (props) => {
+const Main = ({ userState, setUserState }) => {
   const [portfolioState, setPortfolioState] = useState([]);
   const [hasInterAcctedState, setInterAcctedState] = useState(false);
   const [blogState, setBlogState] = useState([]);
-  const [userState, setUserState] = useState({});
   const [modal, setModal] = useState(false);
   const Toggle = () => setModal(!modal);
-  useEffect(() => {
-    const getUser = async () => {
-      const user = await axios.get(url);
-      setUserState(user);
-    };
-    getUser();
-  }, []);
 
   useEffect(() => {
     const getAllBlogs = async () => {
       const blogs = await axios.get(`${url}admin/blog`);
       setBlogState([...blogs.data]);
-      console.log(blogState);
     };
     getAllBlogs();
   }, []);
@@ -61,7 +52,7 @@ const Main = (props) => {
       <Intro />
       <AboutMe />
       {<Grid>{blogsToRender}</Grid>}
-      <Link to={`blogs`}>
+      <Link to={`blogs`} setblogstate={setBlogState} blogstate={blogState}>
         <h1 className="centered">All Blogs</h1>
       </Link>
 
