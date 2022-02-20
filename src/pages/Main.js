@@ -1,6 +1,7 @@
 import Intro from "../components/Main/Intro";
 import AboutMe from "../components/Main/AboutMe";
 import Grid from "../components/Main/grid";
+import Services from "../components/Main/services";
 import Header from "../components/Main/Header";
 import PortfolioGrid from "../components/Main/portfolioGrid";
 import Footer from "../components/Main/Footer";
@@ -29,19 +30,17 @@ const Main = ({ userState, setUserState }) => {
     };
     getAllBlogs();
   }, []);
-
   const blogsToRender = blogState.slice(0, 4).map((el) => {
     return (
       <Blog
-        imgUrl={el.img.url}
+        imgUrl={""}
         blogTitle={el.title}
-        intoText={el.body}
-        blogLink="#"
+        intoText={el.intro}
         key={el._id}
         blogLink={el._id}
       >
         {" "}
-        {el.img.url}
+        {/* {el.img.url} */}
       </Blog>
     );
   });
@@ -51,8 +50,9 @@ const Main = ({ userState, setUserState }) => {
       <Header user={userState} setUserState={setUserState} />
       <Intro />
       <AboutMe />
+      <Services></Services>
       {<Grid>{blogsToRender}</Grid>}
-      <Link to={`blogs`} setblogstate={setBlogState} blogstate={blogState}>
+      <Link to={`blogs`} blogstate={blogState}>
         <h1 className="centered">All Blogs</h1>
       </Link>
 

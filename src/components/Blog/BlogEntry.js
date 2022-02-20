@@ -5,8 +5,45 @@ import CommentCard from "./CommentCard";
 import parse from "html-react-parser";
 import getAmountOfTime from "../../utils/date";
 import TextEditor from "../Forms/TextEditor";
+import axios from "axios";
 
 const BlogEntry = (props) => {
+  const [formInfo, setFormInfo] = useState({
+    commentBody: "",
+  });
+
+  const axiosSubmit = (event) => {
+    event.preventDefault();
+
+    let sendUrl = `http://localhost:4500/admin/comment`;
+
+    axios({
+      method: "POST",
+      url: sendUrl,
+      data: formInfo,
+
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("Success, firm added");
+        } else {
+          console.log("Error occurred");
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const handleChange = (event) => {
+    setFormInfo((prevFormData) => {
+      return { ...prevFormData, [event.target.name]: event.target.value };
+    });
+  };
+
   const fullBlogOrBlogLink = props.blogBody ? (
     <p>{parse(props.individualBlogState.body)}</p>
   ) : (
@@ -21,14 +58,17 @@ const BlogEntry = (props) => {
 
       <TextEditor
         className="form-control text-area"
-        id="blogBody"
-        name="blogBody"
-        //   onChange={handleChange}
-        //   value={formInfo.blogBody}
-        //   getBlogBody={setFormInfo}
-        //   formInfo={formInfo}
-        //   blogBody={formInfo.blogBody}
+        id="commentBody"
+        name="commentBody"
+        onChange={handleChange}
+        value={formInfo.commentBody}
+        getBlogBody={setFormInfo}
+        formInfo={formInfo}
+        body={formInfo.commentBody}
       />
+      <button onClick={axiosSubmit} className="btn btn-primary">
+        submit
+      </button>
     </div>
   ) : null;
 
@@ -38,6 +78,11 @@ const BlogEntry = (props) => {
     today,
     datePosted
   );
+
+  let tags = JSON.parse(JSON.stringify(props.individualBlogState.tags));
+  const tagArray = tags.map((el) => {
+    return <li>{el}</li>;
+  });
 
   return (
     <div>
@@ -58,7 +103,10 @@ const BlogEntry = (props) => {
             <p>{props.individualBlogState.introText}</p>
             {fullBlogOrBlogLink}
           </div>
-          <div className="blog-tags">{/* <ul>{blogTags}</ul> */}</div>
+          <div className="blog-tags">
+            {" "}
+            <ul>{tagArray}</ul>{" "}
+          </div>
         </div>
 
         <div className="blog-footer">

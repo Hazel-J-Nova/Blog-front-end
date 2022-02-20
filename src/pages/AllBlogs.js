@@ -21,14 +21,12 @@ const AllBlogs = (props) => {
     const individualBlogState = el;
 
     return (
-      <div>
-        <div key={index}>
-          <BlogEntry
-            individualBlogState={individualBlogState}
-            Link={individualBlogState._id}
-          />
-          ;
-        </div>
+      <div key={index}>
+        <BlogEntry
+          individualBlogState={individualBlogState}
+          Link={individualBlogState._id}
+        />
+        ;
       </div>
     );
   });

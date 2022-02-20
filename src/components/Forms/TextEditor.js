@@ -17,7 +17,6 @@ const TextEditor = ({ formInfo, getBlogBody, blogBody }) => {
       ...formInfo,
       blogBody: createMarkup(convertedContent).__html,
     });
-    console.log(formInfo);
   };
   const convertContentToHTML = () => {
     let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
