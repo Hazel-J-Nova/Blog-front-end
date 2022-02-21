@@ -3,6 +3,7 @@ import NavItem from "./navItem";
 import Modal from "../Forms/Modal";
 import UserForm from "../Forms/UserForm";
 import { Link } from "react-router-dom";
+import { logInUser, registerUser } from "../../utils/api";
 
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelectorAll(".nav__link");
@@ -13,7 +14,7 @@ const navLinks = document.querySelectorAll(".nav__link");
 
 let toggleNav = () => document.body.classList.toggle("nav-open");
 
-const Header = (props) => {
+const Header = ({ setUserState }) => {
   const registerFormInfo = ["username", "email", "password", "confirmPassword"];
 
   const [modal, setModal] = useState(false);
@@ -66,11 +67,19 @@ const Header = (props) => {
 
       <Modal show={registerForm} title="Register" close={ToggleRegisterForm}>
         <UserForm
+          apiCallToSubmitForm={registerUser}
+          title="register"
           info={["username", "email", "password", "confirmPassword"]}
+          toggle={ToggleRegisterForm}
         ></UserForm>
       </Modal>
       <Modal show={modal} title="Login" close={Toggle}>
-        <UserForm info={["username", "password"]} title="LogIn"></UserForm>
+        <UserForm
+          info={["username", "password"]}
+          apiCallToSubmitForm={logInUser}
+          title="LogIn"
+          toggle={Toggle}
+        ></UserForm>
       </Modal>
     </div>
   );

@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from "react";
+import react, { useState, useEffect, createContext, useMemo } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import BlogForm from "./components/Forms/BlogForm";
@@ -12,30 +12,35 @@ import axios from "axios";
 import AllBlogs from "./pages/AllBlogs";
 const url = "http://localhost:4500/";
 
+export const Context = createContext({
+  userState: {},
+  setUserState: () => {},
+});
+
 function App() {
   const [userState, setUserState] = useState({});
+  const value = useMemo(() => ({ userState, setUserState }), [userState]);
+
   useEffect(() => {
     const getUser = async () => {
       const user = await axios.get(url);
-      setUserState(user);
+      setUserState("aaaa");
     };
     getUser();
   }, []);
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={<Main />}
-          userState={userState}
-          setUserState={setUserState}
-        />
-        <Route path="BlogForm" element={<BlogForm />} />
-        <Route path="login" element={<LogIn />} />
-        <Route path="blogs" element={<AllBlogs />} />
-        <Route path="blog/:id" element={<IndividualBlogPage />} />
-      </Routes>
-    </BrowserRouter>
+    <Context.Provider value={value}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="BlogForm" element={<BlogForm />} />
+          <Route path="login" element={<LogIn />} />
+          <Route path="blogs" element={<AllBlogs />} />
+          <Route path="blog/:id" element={<IndividualBlogPage />} />
+        </Routes>
+      </BrowserRouter>
+    </Context.Provider>
   );
 }
 export default App;
