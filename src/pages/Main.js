@@ -24,9 +24,7 @@ const Main = ({ userState, setUserState }) => {
   const [modal, setModal] = useState(false);
   const Toggle = () => setModal(!modal);
 
-  useEffect(() => {
-    console.log(userState);
-  }, [userState]);
+  
 
   useEffect(() => {
     const getAllBlogs = async () => {

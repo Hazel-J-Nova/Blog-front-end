@@ -1,19 +1,17 @@
 import react, { useState, useEffect, createContext, useMemo } from "react";
 import "./App.css";
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import BlogForm from "./components/Forms/BlogForm";
-import LogIn from "./LogIn";
-import Invoices from "./Invoices";
+import AddPortfolio from "./pages/AddPortfolio";
 import Main from "./pages/Main";
-import Modal from "./components/Forms/Modal";
-import Portal from "./components/Forms/Modal";
+
 import IndividualBlogPage from "./pages/IndividualBlogPage";
 import axios from "axios";
 import AllBlogs from "./pages/AllBlogs";
 const url = "http://localhost:4500/";
 
 export const Context = createContext({
-  userState: {},
+  userState: false,
   setUserState: () => {},
 });
 
@@ -24,7 +22,6 @@ function App() {
   useEffect(() => {
     const getUser = async () => {
       const user = await axios.get(url);
-      setUserState("aaaa");
     };
     getUser();
   }, []);
@@ -34,8 +31,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="BlogForm" element={<BlogForm />} />
-          <Route path="login" element={<LogIn />} />
+          <Route path="admin/blog" element={<BlogForm />} />
+          <Route
+            path="admin/portfolio"
+            element={<AddPortfolio></AddPortfolio>}
+          />
           <Route path="blogs" element={<AllBlogs />} />
           <Route path="blog/:id" element={<IndividualBlogPage />} />
         </Routes>

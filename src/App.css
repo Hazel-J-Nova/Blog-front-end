@@ -138,105 +138,110 @@ header {
 .logo {
   max-width: 100px;
 }
-
-.nav {
-  position: fixed;
-  background: var(--clr-dark);
-  color: var(--clr-light);
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 100;
-
-  transform: translateX(100%);
-  transition: transform 250ms cubic-bezier(.5, 0, .5, 1);
-}
-
-.nav__list {
-  color: var(--clr-light);
-  list-style: none;
+.navigation {
+  height: 60px;
+  width: 100%;
   display: flex;
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
-  margin: 0;
-  padding: 0;
-
-}
-
-.nav__list a:visited {
-  color: var(--clr-light)
-}
-
-.nav__item {
-
-  font-weight: var(--fw-bold);
-  font-size: var(--fs-h3);
-}
-
-.nav-toggle {
-  padding: .5em;
-  background: var(--clr-light);
-  border: 0;
-  cursor: pointer;
-  position: absolute;
-  right: 1em;
-  top: 1em;
-}
-
-
-.nav-open .nav {
-  transform: translateX(0);
-
-}
-
-.nav-open .nav-toggle {
-  position: fixed;
-  z-index: 200;
-}
-
-
-
-.hamburger {
-
-  display: block;
   position: relative;
+  padding: 0.5rem 0rem;
+  background-color: var(--clr-red);
+  color: var(--clr-dark);
 }
 
-.hamburger,
-.hamburger::before,
-.hamburger::after {
-  background: var(--clr-accent);
-  width: 2em;
-  height: 3px;
-  border-radius: 1em;
-  transition: transform 250ms ease-in-out;
+.brand-name {
+  text-decoration: none;
+  color: var(--clr-dark);
+  font-size: 1.3rem;
+  margin-left: 1rem;
+}
+.navigation-menu {
+  margin-left: auto;
 }
 
-.hamburger::before,
-.hamburger::after {
-  content: "";
+.navigation-menu ul {
+  display: flex;
+  padding: 0;
+}
+.navigation-menu li {
+  /* // removes default disc bullet for li tags and applies margin to left & right side */
+  list-style-type: none;
+  margin: 0 1rem;
+}
+.navigation-menu li button {
+  /* // increases the surface area of the anchor tag to span more than just the anchor text */
+  text-decoration: none;
+  display: block;
+  width: 100%;}
+
+  .hamburger {
+  /* // removes default border on button element */
+  border: 0;
+  height: 40px;
+  width: 40px;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--clr-light);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+/* // positions the icon to the right and center aligns it vertically */
   position: absolute;
-  left: 0;
-  right: 0;
+  top: 50%;
+  right: 25px;
+  transform: translateY(-50%);
+  display: none;
 }
+.hamburger:hover {
+  background-color: var(--clr-accent);}
 
-.hamburger::before {
-  top: 6px;
+  @media screen and (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+    /* .navigation-menu ul {
+      display: none;}  */
+ }
+
+@media screen and (max-width: 768px) {
+  .navigation-menu ul {
+    /* // navigation menu is positioned to start 60px from the top of the document (which is directly below the navbar) */
+    position: absolute;
+    top: 60px;
+    right: 0;
+    /* // stacks the li tags vertically  */
+    flex-direction: column;
+    flex-wrap: wrap-reverse;
+   /* // makes menu span full height and width */
+    width: 50%;
+   
+    background-color: var(--clr-light);
+    border-top: 1px solid var(--clr-dark);
+    display: none;
+  }
+  .navigation-menu li {
+    /* // centers link text and strips off margin */
+    text-align: center;
+    margin: 0;
+  }
+  .navigation-menu li button{
+    color: var(--clr-light);
+    background-color: #303030;
+    z-index: 1000000000 ;
+    /* // increases the surface area of the anchor tag to span the full width of the menu */
+    padding: 1.5rem 0;
+  }
+  .navigation-menu li:hover {
+    background-color: var(--clr-light);
+  }
+  .navigation-menu.expanded ul {
+    display: flex;
+  }
 }
-
-.hamburger::after {
-  bottom: 6px;
-}
-
-
 
 /* intro */
-.intro {
+/* .intro {
   position: relative;
-}
+} */
 
 .intro__img {
   box-shadow: var(--bs);
@@ -312,14 +317,14 @@ header {
 
 .services {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 
 
 @media (min-width:800px) {
   .services {
     display: flex;
-
+    flex-direction: row;
     max-width: 1000px;
     margin: 0 auto;
     min-height: 100%;
@@ -452,3 +457,12 @@ header {
 .centered{
   text-align: center;
 }
+
+
+.text-Area{
+  width: 100%;
+  max-height: 50%;
+  padding: 2rem;
+ 
+}
+

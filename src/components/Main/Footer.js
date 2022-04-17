@@ -1,20 +1,27 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import Modal from "../Forms/Modal";
 import UserForm from "../Forms/UserForm";
+import { sendEmail } from "../../utils/api";
+import useModal from "../../utils/Hooks/useModal";
+import validators from "../../utils/validators";
+import useInput from "../../utils/Hooks/useInput";
+import FormField from "../Forms/FormField";
 
 const Footer = (props) => {
-  const emailForm = ["emailAddress", "subject", "message"];
-  const [email, setEmail] = useState(false);
-  const ToggleEmail = () => {
-    setEmail((previosModalState) => {
-      return !previosModalState;
-    });
-  };
+  const manageEmailModal = useModal();
+
+  const manageEmailAddressInput = useInput(validators.validateEmail);
+
+  const manageMessage = useInput(validators.validateMessage);
+  const [emailState, setEmailState] = useState(false);
+  const [errorMessageState, setErroMessageState] = useState("");
+
   return (
     <footer className="footer">
-      <p onClick={ToggleEmail} className="footer__link">
-        {props.emailAddress}
-      </p>
+      <button className="btn" onClick={manageEmailModal.Toggle}>
+        <p className="footer__link">Get in touch</p>
+      </button>
+
       <ul className="social-list">
         <li className="social-list__item">
           <a className="social-list__link" href="#">
@@ -32,8 +39,60 @@ const Footer = (props) => {
           </a>
         </li>
       </ul>
-      <Modal show={email} title="Email Me" close={ToggleEmail}>
-        <UserForm info={emailForm} title="Email Me"></UserForm>
+      <Modal
+        display={manageEmailModal.modal}
+        title="Email Me"
+        close={manageEmailModal.Toggle}
+        className={manageEmailModal.modalClasses}
+      >
+        <UserForm title="email me" toggle={manageEmailModal.Toggle}>
+          {errorMessageState && <p>something went wrong</p>}
+          <FormField
+            styleClass="textArea--textInput"
+            label="your email address"
+            id="email-address"
+            type="email"
+            onBlur={manageEmailAddressInput.onBlur}
+            onChange={manageEmailAddressInput.valueChangeHandler}
+            value={manageEmailAddressInput.valueState}
+            hasError={manageEmailAddressInput.hasError}
+            errotText=" please enter a valid email address"
+          ></FormField>
+
+          <textarea
+            placeholder="Enter your message"
+            className="text-Area"
+            name="message"
+            id="message"
+            onBlur={manageMessage.onBlur}
+            onChange={manageMessage.valueChangeHandler}
+            value={manageMessage.valueState}
+            hasError={manageMessage.hasError}
+            errotText="Message must not be empty"
+          ></textarea>
+          <button
+            className="btn"
+            onClick={(e) => {
+              e.preventDefault();
+              setErroMessageState("");
+              let response = sendEmail(
+                manageMessage.valueState,
+                manageEmailAddressInput.valueState
+              );
+              setEmailState(response);
+              console.log(emailState);
+              if (!emailState) {
+                setErroMessageState("Please retry");
+              } else {
+                manageEmailAddressInput.setValueState("");
+                manageMessage.setValueState("");
+                manageEmailModal.Toggle();
+              }
+            }}
+          >
+            Email Me
+          </button>
+        </UserForm>
       </Modal>
     </footer>
   );

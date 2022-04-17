@@ -1,21 +1,30 @@
-import React from "react";
+import "./FormField.css";
 
 const FormField = (props) => {
   return (
-    <div className="mb-3">
-      <label className="form-label" for={props.fieldName}>
-        {props.fieldName}
+    <div className="">
+      <label htmlFor={props.id} className="form-label">
+        {" "}
+        {props.label}{" "}
       </label>
-      <input
-        className="form-control"
-        type="text"
-        id={props.fieldName}
-        name={props.fieldName}
-        autofocus
-        required
-        onChange={props.handleChange}
-      />
-      <div className="valid-feedback">Looks good!</div>
+      <div className="icon">
+        <input
+          classname={`form-control size ${props.styelClass}`}
+          type={props.type}
+          id={props.id}
+          onChange={props.onChange}
+          onBlur={props.onBlur}
+          value={props.value}
+          autofocus
+          required
+        />
+        {props.icon && (
+          <i className onClick={props.showPassword}>
+            {props.icon}
+          </i>
+        )}
+      </div>
+      {props.hasError && <p className="error-text">{props.errortext}</p>}
     </div>
   );
 };

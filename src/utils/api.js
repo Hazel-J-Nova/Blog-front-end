@@ -17,7 +17,7 @@ export const logInUser = async (username, password) => {
 
 export const registerUser = async (username, email, password) => {
   const formData = { username, email, password };
-  axios({
+  await axios({
     method: "POST",
     url: `${url}/users/register`,
     data: formData,
@@ -28,7 +28,7 @@ export const registerUser = async (username, email, password) => {
         return response.data;
       } else {
         console.log("Error occurred");
-        return "error";
+        return "error ";
       }
     })
     .catch((e) => {
@@ -77,14 +77,45 @@ const editPortfolioProject = () => {
   return null;
 };
 
-const addNewComment = () => {
-  return null;
+export const addNewComment = async (comment, userId) => {
+  const newComment = await axios
+    .post(`${url}/admin/comment`, {
+      message: comment,
+      user: userId,
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
-const deleteComment = () => {
-  return null;
+export const getAllComments = async () => {
+  const comments = await axios.get(`${url}/admin/comments`);
+  return comments;
 };
 
-const editComment = () => {
-  return null;
+export const deleteComment = async (commentId) => {
+  await axios.delete(`${url}/admin/${commentId}`);
+};
+
+export const editComment = async (user, commentBody, commentId) => {
+  let response = axios.patch(`${url}/admin/comment/${commentId}
+  `);
+  return response;
+};
+
+export const sendEmail = async (message, emailAddress, subject) => {
+  try {
+    const response = await axios.post(`${url}/admin/email`, {
+      message,
+      emailAddress,
+      subject,
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
 };

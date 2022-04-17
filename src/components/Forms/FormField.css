@@ -1,0 +1,11 @@
+.icon{
+    display: flex;
+   flex-direction: row;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+.size{
+    max-width: 50%;
+}

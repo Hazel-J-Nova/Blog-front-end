@@ -19,7 +19,7 @@ const AboutMe = () => {
           passion for cooking
         </p>
       </div>
-      <img src="img/hazel-2.jpg" class="about-me__img" alt="" />
+      <img src="img/hazel-2.jpg" class="about-me__img" alt="hey" />
     </section>
   );
 };

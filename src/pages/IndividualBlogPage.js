@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getIndividualBlog } from "../utils/api";
 import Footer from "../components/Main/Footer";
-import BlogEntry from "../components/Blog/BlogEntry";
-import CommentCard from "../components/Blog/CommentCard";
+import IndividualBlog from "./IndividualBlog";
 
 import axios from "axios";
 const url = "http://localhost:4500/";
@@ -26,11 +25,14 @@ const IndividualBlogPage = () => {
   return (
     <div>
       <Header></Header>
-      <BlogEntry
-        singleBlog={true}
-        individualBlogState={blogState}
-        blogBody={blogState.body}
-      ></BlogEntry>
+      <IndividualBlog
+        commentState={commentState}
+        setCommentState={setCommentState}
+        title="words narg"
+        subTitle="short message"
+        intro="an intrp"
+        body="text for a body"
+      ></IndividualBlog>
       <Footer />
     </div>
   );
