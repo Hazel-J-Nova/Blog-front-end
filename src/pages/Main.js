@@ -15,7 +15,7 @@ import axios from "axios";
 import { Editor, EditorState } from "draft-js";
 import { Context } from "../App";
 
-const url = "http://localhost:4500/";
+const url = "evening-crag-18215.herokuapp.com/";
 
 const Main = ({ userState, setUserState }) => {
   const [portfolioState, setPortfolioState] = useState([]);
@@ -23,8 +23,6 @@ const Main = ({ userState, setUserState }) => {
   const [blogState, setBlogState] = useState([]);
   const [modal, setModal] = useState(false);
   const Toggle = () => setModal(!modal);
-
-  
 
   useEffect(() => {
     const getAllBlogs = async () => {

@@ -4,7 +4,7 @@ import BlogEntry from "../components/Blog/BlogEntry";
 import axios from "axios";
 import Header from "../components/Main/Header";
 import Footer from "../components/Main/Footer";
-const url = "http://localhost:4500/";
+const url = "evening-crag-18215.herokuapp.com";
 
 const AllBlogs = (props) => {
   const [blogState, setBlogState] = useState([]);

@@ -8,7 +8,7 @@ import Main from "./pages/Main";
 import IndividualBlogPage from "./pages/IndividualBlogPage";
 import axios from "axios";
 import AllBlogs from "./pages/AllBlogs";
-const url = "http://localhost:4500/";
+const url = "evening-crag-18215.herokuapp.com";
 
 export const Context = createContext({
   userState: false,

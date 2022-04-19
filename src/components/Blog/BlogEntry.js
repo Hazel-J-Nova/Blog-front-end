@@ -15,7 +15,7 @@ const BlogEntry = (props) => {
   const axiosSubmit = (event) => {
     event.preventDefault();
 
-    let sendUrl = `http://localhost:4500/admin/comment`;
+    let sendUrl = `evening-crag-18215.herokuapp.com`;
 
     axios({
       method: "POST",

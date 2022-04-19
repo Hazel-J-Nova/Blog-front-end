@@ -23,19 +23,22 @@ const IndividualBlog = (props) => {
     };
     updateCommentState();
   }, [apiCall]);
-
-  const coments = props.commentState.map((comment) => {
-    return (
-      <CommentCard
-        commentState={commentState}
-        setCommentState={setCommentState}
-        key={comment._id}
-        user={comment.user}
-        body={comment.body}
-        date={comment.date}
-      ></CommentCard>
-    );
-  });
+  const comments = () => {
+    if (props.commentState.length > 0) {
+      props.commentState.map((comment) => {
+        return (
+          <CommentCard
+            commentState={commentState}
+            setCommentState={setCommentState}
+            key={comment._id}
+            user={comment.user}
+            body={comment.body}
+            date={comment.date}
+          ></CommentCard>
+        );
+      });
+    }
+  };
 
   return (
     <Context.Consumer>
@@ -47,7 +50,7 @@ const IndividualBlog = (props) => {
           </p>
           <div className="about-me__body">{props.body}</div>
           <img src={props.url} class="about-me__img" alt={props.alt} />
-          <div>{coments}</div>
+          <div>{comments}</div>
           {ctx.userState.hasOwnProperty("user") && (
             <button className="btn" onClick={manageCommentModal.Toggle}>
               add a comment

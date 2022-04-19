@@ -5,7 +5,7 @@ const Blog = (props) => {
   return (
     <div class="card">
       <div class="card__img">
-        <img src={props.imgUrl} alt="props.altText" />
+        <img src={props.imgUrl} alt={props.altText} />
       </div>
       <div class="card__contenido">
         <h3 class="card__title">{props.blogTitle}</h3>
