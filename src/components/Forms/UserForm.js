@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import "./LoginForm.css";
 import useOnClickOutside from "../../utils/Hooks/useOnClickOutside";
-import FormField from "./FormField";
+import FormField from "../FormField";
 import { registerUser } from "../../utils/api";
 import LogIn from "../../LogIn";
 import { Context } from "../../App";
