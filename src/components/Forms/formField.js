@@ -1,4 +1,4 @@
-import "./FormField.css";
+import "../FormField.css";
 
 const FormField = (props) => {
   return (
