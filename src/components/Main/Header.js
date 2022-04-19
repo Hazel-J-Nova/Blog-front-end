@@ -4,7 +4,7 @@ import UserForm from "../Forms/UserForm";
 import { Link } from "react-router-dom";
 import { logInUser, registerUser } from "../../utils/api";
 import { Context } from "../../App";
-import FormField from "../Forms/FormField";
+import FormField from "../../components/Forms/FormField";
 import useModal from "../../utils/Hooks/useModal";
 import validators from "../../utils/validators";
 import useInput from "../../utils/Hooks/useInput";
