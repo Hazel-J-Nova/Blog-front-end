@@ -52,15 +52,12 @@ const Main = ({ userState, setUserState }) => {
       <Intro />;
       <AboutMe />
       <Services></Services>
-      // {<Grid>{blogsToRender}</Grid>}
-      //{" "}
-      <Link to={`blogs`} blogstate={blogState}>
-        // <h1 className="centered">All Blogs</h1>
-        //{" "}
-      </Link>
-      // <PortfolioGrid>{portfolioState}</PortfolioGrid>
-      // <Footer emailAddress="Hazel.J.Tate@gmail.com" />
-      //{" "}
+      {/* // {<Grid>{blogsToRender}</Grid>} */}
+      // {/* <Link to={`blogs`} blogstate={blogState}> */}
+      // <h1 className="centered">All Blogs</h1>
+      // {/* </Link> */}
+      {/* <PortfolioGrid>{portfolioState}</PortfolioGrid>
+       <Footer emailAddress="Hazel.J.Tate@gmail.com" /> */}{" "}
     </div>
   );
 };
