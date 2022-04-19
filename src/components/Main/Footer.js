@@ -5,7 +5,7 @@ import { sendEmail } from "../../utils/api";
 import useModal from "../../utils/Hooks/useModal";
 import validators from "../../utils/validators";
 import useInput from "../../utils/Hooks/useInput";
-import FormField from "../Forms/FormField";
+import FormField from "../Forms/FormField.js";
 
 const Footer = (props) => {
   const manageEmailModal = useModal();
