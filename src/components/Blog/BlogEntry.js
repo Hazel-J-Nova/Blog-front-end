@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./BlogEntry.scss";
-import CommentCard from "./CommentCard";
 import parse from "html-react-parser";
 import getAmountOfTime from "../../utils/date";
 import TextEditor from "../Forms/TextEditor";

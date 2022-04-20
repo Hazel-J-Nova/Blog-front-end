@@ -6,13 +6,9 @@ import Header from "../components/Main/Header";
 import PortfolioGrid from "../components/Main/portfolioGrid";
 import Footer from "../components/Main/Footer";
 import React, { useEffect, useState, useContext } from "react";
-import Modal from "../components/Forms/Modal";
-import Portal from "../components/Forms/Modal";
-import { Link, Outlet, Routes, Route } from "react-router-dom";
-import { getAllBlogs } from "../utils/api";
+import { Link } from "react-router-dom";
 import Blog from "../components/Main/BlogCard";
 import axios from "axios";
-import { Editor, EditorState } from "draft-js";
 import { Context } from "../App";
 
 const url = "evening-crag-18215.herokuapp.com/";
