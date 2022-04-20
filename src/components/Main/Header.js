@@ -4,7 +4,7 @@ import UserForm from "../Forms/UserForm";
 import { Link } from "react-router-dom";
 import { logInUser, registerUser } from "../../utils/api";
 import { Context } from "../../App";
-import FormField from "../Forms/FormField";
+import Form from "../Forms/FormField";
 import useModal from "../../utils/Hooks/useModal";
 import validators from "../../utils/validators";
 import useInput from "../../utils/Hooks/useInput";
@@ -120,7 +120,7 @@ const Header = () => {
             >
               <UserForm title="register" toggle={manageRegisterModal.Toggle}>
                 {errorState && <p>{errorState}</p>}
-                <FormField
+                <Form
                   label="Enter your email"
                   id="email"
                   type="email"
@@ -130,7 +130,7 @@ const Header = () => {
                   hasError={manageEmailInput.hasError}
                   errortext="please enter a valid email address"
                 />
-                <FormField
+                <Form
                   label="User Name"
                   id="username"
                   type="email"
@@ -139,7 +139,7 @@ const Header = () => {
                   value={manageUserNameInput.valueState}
                   errortext="Invalid User Name"
                 />
-                <FormField
+                <Form
                   label="Password"
                   id="password"
                   type={showPasswordState ? "text" : "password"}
@@ -148,8 +148,8 @@ const Header = () => {
                   value={managePasswordInput.valueState}
                   icon={showPasswordState ? eye : eyeSlash}
                   errortext="Invalid Password"
-                ></FormField>
-                <FormField
+                ></Form>
+                <Form
                   className="input-field"
                   label="comfirm password"
                   id="confirm password"
@@ -201,7 +201,7 @@ const Header = () => {
                 title="LogIn"
                 toggle={manageLoginModal.Toggle}
               >
-                <FormField
+                <Form
                   label="Enter your email"
                   id="email"
                   type="email"
@@ -209,7 +209,7 @@ const Header = () => {
                   onChange={manageEmailInput.onChange}
                   value={manageEmailInput.value}
                 />
-                <FormField
+                <Form
                   label="Password"
                   id="password"
                   type={showPasswordState ? "text" : "password"}

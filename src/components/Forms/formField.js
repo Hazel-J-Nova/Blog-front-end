@@ -1,6 +1,6 @@
 import "../FormField.css";
 
-const FormField = (props) => {
+const Form = (props) => {
   return (
     <div className="">
       <label htmlFor={props.id} className="form-label">
@@ -29,4 +29,4 @@ const FormField = (props) => {
   );
 };
 
-export default FormField;
+export default Form;
