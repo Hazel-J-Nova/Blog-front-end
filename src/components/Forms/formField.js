@@ -1,5 +1,3 @@
-import "../FormField.css";
-
 const Form = (props) => {
   return (
     <div className="">
