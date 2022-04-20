@@ -5,8 +5,7 @@ import { sendEmail } from "../../utils/api";
 import useModal from "../../utils/Hooks/useModal";
 import validators from "../../utils/validators";
 import useInput from "../../utils/Hooks/useInput";
-import FormField from "../Forms/FormField";
-
+import Form from "../Forms/FormField";
 const Footer = (props) => {
   const manageEmailModal = useModal();
 
@@ -47,7 +46,7 @@ const Footer = (props) => {
       >
         <UserForm title="email me" toggle={manageEmailModal.Toggle}>
           {errorMessageState && <p>something went wrong</p>}
-          <FormField
+          <Form
             styleClass="textArea--textInput"
             label="your email address"
             id="email-address"
@@ -57,7 +56,7 @@ const Footer = (props) => {
             value={manageEmailAddressInput.valueState}
             hasError={manageEmailAddressInput.hasError}
             errotText=" please enter a valid email address"
-          ></FormField>
+          ></Form>
 
           <textarea
             placeholder="Enter your message"
