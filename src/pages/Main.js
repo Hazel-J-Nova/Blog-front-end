@@ -4,7 +4,7 @@ import Grid from "../components/Main/grid";
 import Services from "../components/Main/services";
 import Header from "../components/Main/Header";
 import PortfolioGrid from "../components/Main/portfolioGrid";
-import PortfolioItem from "../components/Main/PortfolioItem";
+// import PortfolioItem from "../components/Main/PortfolioItem";
 import Footer from "../components/Main/Footer";
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
@@ -51,14 +51,13 @@ const Main = ({ userState, setUserState }) => {
     );
   });
   const portfolioToDisplay = portfolioState.map((el) => {
-    return (
-      <PortfolioItem
-        image={el.image}
-        alt={el.alt}
-        link={el.link}
-        key={el._id}
-      ></PortfolioItem>
-    );
+    return "";
+    // <PortfolioItem
+    //   image={el.image}
+    //   alt={el.alt}
+    //   link={el.link}
+    //   key={el._id}
+    // ></PortfolioItem>
   });
 
   const value = useContext(Context);
