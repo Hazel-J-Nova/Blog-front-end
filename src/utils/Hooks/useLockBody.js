@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 // Hook
 export default function useLockBodyScroll(modal) {

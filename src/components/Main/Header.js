@@ -1,4 +1,4 @@
-import react, { useEffect, useRef, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import Modal from "../Forms/Modal";
 import UserForm from "../Forms/UserForm";
 import { Link } from "react-router-dom";
@@ -44,30 +44,33 @@ const Header = () => {
     } else {
       setCompareState(true);
     }
-  }, [manageConfirmPasswordInput, manageConfirmPasswordInput]);
+  }, [managePasswordInput, manageConfirmPasswordInput]);
 
   useEffect(() => {
     manageConfirmPasswordInput.setValueState("");
     managePasswordInput.setValueState("");
     manageEmailInput.setValueState("");
     manageUserNameInput.setValueState("");
-  }, []);
+  });
 
   useEffect(() => {
-    setIsLoggedIn(isObjectEmpty(ctx.userState));
-    setIsAdmin(!isObjectEmpty(ctx.userState) && ctx.userState.admin === true);
+    if (ctx.userState) {
+      setIsLoggedIn(ctx.userState.hasOwnProperty("user"));
+      setIsAdmin(!isObjectEmpty(ctx.userState) && ctx.userState.admin === true);
+    }
   }, [ctx.userState]);
 
   const eye = <FontAwesomeIcon icon={faEye} onClick={togglePassword} />;
   const eyeSlash = (
     <FontAwesomeIcon icon={faEyeSlash} onClick={togglePassword} />
   );
+  console.log(ctx.userState);
 
   return (
     <Context.Consumer>
       {(ctx) => {
         return (
-          <div>
+          <header>
             <nav class="navigation">
               <button className="btn">
                 <Link to="/"> home </Link>
@@ -126,7 +129,7 @@ const Header = () => {
                   type="email"
                   onBlur={manageEmailInput.onBlur}
                   onChange={manageEmailInput.valueChangeHandler}
-                  value={manageEmailInput.valueState}
+                  value={manageEmailInput.value}
                   hasError={manageEmailInput.hasError}
                   errortext="please enter a valid email address"
                 />
@@ -136,7 +139,7 @@ const Header = () => {
                   type="email"
                   onBlur={manageEmailInput.onBlur}
                   onChange={manageUserNameInput.valueChangeHandler}
-                  value={manageUserNameInput.valueState}
+                  value={manageUserNameInput.value}
                   errortext="Invalid User Name"
                 />
                 <Form
@@ -145,7 +148,7 @@ const Header = () => {
                   type={showPasswordState ? "text" : "password"}
                   onBlur={managePasswordInput.onBlur}
                   onChange={managePasswordInput.valueChangeHandler}
-                  value={managePasswordInput.valueState}
+                  value={managePasswordInput.value}
                   icon={showPasswordState ? eye : eyeSlash}
                   errortext="Invalid Password"
                 ></Form>
@@ -156,7 +159,7 @@ const Header = () => {
                   type={showPasswordState ? "text" : "password"}
                   onBlur={manageConfirmPasswordInput.onBlur}
                   onChange={manageConfirmPasswordInput.valueChangeHandler}
-                  value={manageConfirmPasswordInput.valueState}
+                  value={manageConfirmPasswordInput.value}
                   showPassword={togglePassword}
                   icon={showPasswordState ? eye : eyeSlash}
                 />
@@ -242,7 +245,7 @@ const Header = () => {
                 <div></div>
               </UserForm>
             </Modal>
-          </div>
+          </header>
         );
       }}
     </Context.Consumer>

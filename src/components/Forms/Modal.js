@@ -6,7 +6,6 @@ import CSSTransition from "react-transition-group/CSSTransition";
 import Portal from "../utils/Portals";
 
 export default function Modal(props) {
-  const closeId = props.id;
   const close = props.close;
   const ref = useRef();
   const closeModal = () => {
@@ -20,19 +19,6 @@ export default function Modal(props) {
   });
 
   useLockBodyScroll(ref);
-  const modalContentToRender = (
-    <div ref={ref}>
-      {
-        props.display ? (
-          <div ref={ref} className>
-            {props.children}
-            {}
-          </div>
-        ) : null
-        // <button onClick={props.close}>Open Modal</button>
-      }
-    </div>
-  );
 
   const animationTiming = {
     enter: 1000,

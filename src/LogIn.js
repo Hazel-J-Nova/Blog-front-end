@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "./components/Forms/Modal";
 import LoginForm from "./components/Forms/LogInForm";
 import UserForm from "./components/Forms/UserForm";
@@ -8,7 +8,6 @@ export default function LogIn({ children, onClose, open }) {
     userName: "",
     password: "",
   };
-  const registerFormInfo = ["username, email, password, confirmPassword"];
   const [modal, setModal] = useState(false);
   const [registerForm, setRegisterForm] = useState(false);
   const Toggle = () => {

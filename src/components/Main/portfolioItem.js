@@ -1,7 +1,4 @@
-import react, { useState, useEffect } from "react";
-
-const portfolioItem = (props) => {
-  [portfolioState, callPortfolio] = useState({});
+const PortfolioItem = (props) => {
   return (
     <a href={props.link} class="portfolio__item">
       <figure>
@@ -11,3 +8,5 @@ const portfolioItem = (props) => {
     </a>
   );
 };
+
+export default PortfolioItem;

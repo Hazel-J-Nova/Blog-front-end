@@ -4,21 +4,21 @@ import Grid from "../components/Main/grid";
 import Services from "../components/Main/services";
 import Header from "../components/Main/Header";
 import PortfolioGrid from "../components/Main/portfolioGrid";
+import PortfolioItem from "../components/Main/PortfolioItem";
 import Footer from "../components/Main/Footer";
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Blog from "../components/Main/BlogCard";
 import axios from "axios";
 import { Context } from "../App";
+import { getPortfolioItems } from "../utils/api";
 
-const url = "evening-crag-18215.herokuapp.com/";
+const url = "https://evening-crag-18215.herokuapp.com/";
 
 const Main = ({ userState, setUserState }) => {
   const [portfolioState, setPortfolioState] = useState([]);
   const [hasInterAcctedState, setInterAcctedState] = useState(false);
   const [blogState, setBlogState] = useState([]);
-  const [modal, setModal] = useState(false);
-  const Toggle = () => setModal(!modal);
 
   useEffect(() => {
     const getAllBlogs = async () => {
@@ -27,6 +27,15 @@ const Main = ({ userState, setUserState }) => {
     };
     getAllBlogs();
   }, []);
+
+  useEffect(() => {
+    const getPortfolio = async () => {
+      const portfolio = await getPortfolioItems();
+      setPortfolioState([...portfolio.data]);
+    };
+    getPortfolio();
+  }, []);
+
   const blogsToRender = blogState.slice(0, 4).map((el) => {
     return (
       <Blog
@@ -41,6 +50,17 @@ const Main = ({ userState, setUserState }) => {
       </Blog>
     );
   });
+  const portfolioToDisplay = portfolioState.map((el) => {
+    return (
+      <PortfolioItem
+        image={el.image}
+        alt={el.alt}
+        link={el.link}
+        key={el._id}
+      ></PortfolioItem>
+    );
+  });
+
   const value = useContext(Context);
   return (
     <div>
@@ -52,8 +72,8 @@ const Main = ({ userState, setUserState }) => {
       <Link to={`blogs`} blogstate={blogState}>
         <h1 className="centered">All Blogs</h1>
       </Link>
-      <PortfolioGrid>{portfolioState}</PortfolioGrid>
-      <Footer emailAddress="Hazel.J.Tate@gmail.com" />{" "}
+      <PortfolioGrid>{portfolioToDisplay}</PortfolioGrid>
+      <Footer />{" "}
     </div>
   );
 };

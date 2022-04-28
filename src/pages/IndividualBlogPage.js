@@ -1,12 +1,11 @@
 import Header from "../components/Main/Header";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getIndividualBlog } from "../utils/api";
 import Footer from "../components/Main/Footer";
 import IndividualBlog from "./IndividualBlog";
 
 import axios from "axios";
-const url = "evening-crag-18215.herokuapp.com/";
+const url = "https://evening-crag-18215.herokuapp.com/";
 const IndividualBlogPage = () => {
   const id = useParams();
   const [commentState, setCommentState] = useState([]);
@@ -14,13 +13,13 @@ const IndividualBlogPage = () => {
   useEffect(() => {
     const blog = async () => {
       const singleBlog = await axios.get(
-        `evening-crag-18215.herokuapp.com/admin/blog/${id.id}`
+        `https://evening-crag-18215.herokuapp.com/admin/blog/${id.id}`
       );
       setBlogState({ ...singleBlog.data });
       setCommentState(blogState.comments);
     };
     blog();
-  }, []);
+  }, [id, blogState.comments]);
 
   return (
     <div>

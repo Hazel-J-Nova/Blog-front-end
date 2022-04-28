@@ -20,7 +20,7 @@ const BlogForm = () => {
 
     let formData = new FormData();
     let fileData = formInfo.image;
-    let sendUrl = `evening-crag-18215.herokuapp.com/admin/blog`;
+    let sendUrl = `https://evening-crag-18215.herokuapp.com/admin/blog`;
     formData.append("image", fileData);
     formData.append("title", formInfo.blogTitle);
     formData.append("body", formInfo.blogBody);

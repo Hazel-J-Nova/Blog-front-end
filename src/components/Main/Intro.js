@@ -1,5 +1,5 @@
-import react from "react";
 import "./Intro.css";
+import hazelProfile from "../../Public/Hazel_Profile.jpg";
 
 const Intro = () => {
   return (
@@ -10,11 +10,7 @@ const Intro = () => {
       <p className="section__subtitle section__subtitle--intro">
         Full Stack Dev
       </p>
-      <img
-        src="img/Hazel-01_50.png"
-        alt="a picture of Hazel"
-        class="intro__img"
-      />
+      <img src={hazelProfile} alt="Hazel looking ahead" class="intro__img" />
     </section>
   );
 };

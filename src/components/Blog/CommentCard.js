@@ -19,7 +19,7 @@ const CommentCard = (props) => {
       props.setCommentState([...comments.data]);
     };
     updateCommentState();
-  }, [apiCall]);
+  }, [apiCall, props]);
 
   const manageEditCommentModal = useModal();
   const manageEditCommentInput = useInput(validators.validateMessage);

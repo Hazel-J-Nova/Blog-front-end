@@ -3,7 +3,6 @@ import FormData from "form-data";
 import Header from "../components/Main/Header";
 import Footer from "../components/Main/Footer";
 import { useState } from "react";
-import TextEditor from "../components/Forms/TextEditor";
 
 const AddPortfolio = () => {
   const [responseState, setResponseState] = useState("");
@@ -20,7 +19,7 @@ const AddPortfolio = () => {
 
     let formData = new FormData();
     let fileData = formInfo.image;
-    let sendUrl = `evening-crag-18215.herokuapp.com/admin/portfolio`;
+    let sendUrl = `https://evening-crag-18215.herokuapp.com/admin/portfolio`;
     formData.append("image", fileData);
     formData.append("title", formInfo.title);
     formData.append("alt", formInfo.alt);

@@ -13,7 +13,10 @@ const validators = {
     return null;
   },
   validateUserName: (value) => {
-    return null;
+    if (value.trim().length !== 0) {
+      return true;
+    }
+    return false;
   },
   validateMessage: (value) => {
     if (value.trim().length !== 0) {

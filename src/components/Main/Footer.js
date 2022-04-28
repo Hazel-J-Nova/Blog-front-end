@@ -6,6 +6,13 @@ import useModal from "../../utils/Hooks/useModal";
 import validators from "../../utils/validators";
 import useInput from "../../utils/Hooks/useInput";
 import Form from "../Forms/Form";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLinkedin,
+  faGithub,
+  faCodepen,
+} from "@fortawesome/free-brands-svg-icons";
+
 const Footer = (props) => {
   const manageEmailModal = useModal();
 
@@ -23,18 +30,21 @@ const Footer = (props) => {
 
       <ul className="social-list">
         <li className="social-list__item">
-          <a className="social-list__link" href="#">
-            <i className="fab fa-github"></i>
+          <a className="social-list__link" href="https://codepen.io/void-iros">
+            <FontAwesomeIcon icon={faCodepen} />
           </a>
         </li>
         <li className="social-list__item">
-          <a className="social-list__link" href="#">
-            <i className="fab fa-linkedin"></i>
+          <a className="social-list__link" href="https://github.com/Void-iros">
+            <FontAwesomeIcon icon={faGithub} />
           </a>
         </li>
         <li className="social-list__item">
-          <a className="social-list__link" href="">
-            <i className="fab fa-linkedin"></i>
+          <a
+            className="social-list__link"
+            href="https://www.linkedin.com/in/hazel-tate-1b7a48209/"
+          >
+            <FontAwesomeIcon icon={faLinkedin} />
           </a>
         </li>
       </ul>

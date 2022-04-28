@@ -1,4 +1,4 @@
-import react from "react";
+import hazelDots from "../../Public/Hazel_dots.jpg";
 
 const AboutMe = () => {
   return (
@@ -19,7 +19,11 @@ const AboutMe = () => {
           passion for cooking
         </p>
       </div>
-      <img src="img/hazel-2.jpg" class="about-me__img" alt="hey" />
+      <img
+        src={hazelDots}
+        class="about-me__img"
+        alt="Hazel in a chair wearing polkadots"
+      />
     </section>
   );
 };

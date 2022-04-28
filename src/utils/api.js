@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = "evening-crag-18215.herokuapp.com";
+const url = "https://evening-crag-18215.herokuapp.com";
 
 export const logInUser = async (username, password) => {
   try {
@@ -8,7 +8,7 @@ export const logInUser = async (username, password) => {
       password,
     });
 
-    return "responce.data";
+    return response.data;
   } catch (error) {
     console.log(error);
     return "error";
@@ -63,6 +63,11 @@ export const getAllBlogs = async () => {
 export const getIndividualBlog = async (blogId) => {
   const blog = await axios.get(`${url}/admin/blog/${blogId}`);
   return blog;
+};
+
+export const getPortfolioItems = async () => {
+  const portfolioItems = await axios.get(`${url}/admin/portfolio`);
+  return portfolioItems;
 };
 
 const addNewPorfolioProject = () => {
