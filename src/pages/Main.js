@@ -3,7 +3,7 @@ import AboutMe from "../components/Main/AboutMe";
 import Grid from "../components/Main/grid";
 import Services from "../components/Main/services";
 import Header from "../components/Main/Header";
-import PortfolioGrid from "../components/Main/PortfolioGrid";
+import PortfolioGrid from "../components/Main/PortGrid";
 import PortfolioItem from "../components/Main/PortItem";
 import Footer from "../components/Main/Footer";
 import React, { useEffect, useState, useContext } from "react";

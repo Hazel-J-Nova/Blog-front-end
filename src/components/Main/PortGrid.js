@@ -1,4 +1,4 @@
-const portfolioGrid = (props) => {
+const PortGrid = (props) => {
   return (
     <section class="my--work" id="work">
       <h2 class="section__title">My Work</h2>
@@ -8,4 +8,4 @@ const portfolioGrid = (props) => {
   );
 };
 
-export default portfolioGrid;
+export default PortGrid;
