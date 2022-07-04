@@ -1,18 +1,18 @@
-import { useEffect, useState, useContext } from "react";
-import Modal from "../Forms/Modal";
-import UserForm from "../Forms/UserForm";
-import { Link } from "react-router-dom";
-import { logInUser, registerUser } from "../../utils/api";
-import { Context } from "../../App";
-import Form from "../Forms/Form";
-import useModal from "../../utils/Hooks/useModal";
-import validators from "../../utils/validators";
-import useInput from "../../utils/Hooks/useInput";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import Bars from "../Icons/Bars";
-import isObjectEmpty from "../../utils/isObjectEmpty";
-import adminHeader from "./adminHeader";
+import { useEffect, useState, useContext } from 'react';
+import Modal from '../Forms/Modal';
+import UserForm from '../Forms/UserForm';
+import { Link } from 'react-router-dom';
+import { logInUser, registerUser } from '../../utils/api';
+import { Context } from '../../App';
+import Form from '../Forms/Form';
+import useModal from '../../utils/Hooks/useModal';
+import validators from '../../utils/validators';
+import useInput from '../../utils/Hooks/useInput';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import Bars from '../Icons/Bars';
+import isObjectEmpty from '../../utils/isObjectEmpty';
+import AdminHeader from './AdminHeader';
 
 const Header = () => {
   const ctx = useContext(Context);
@@ -21,8 +21,8 @@ const Header = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [showPasswordState, setShowPasswordState] = useState(false);
   const [compareState, setCompareState] = useState(true);
-  const [errorState, setErrorState] = useState("");
-
+  const [errorState, setErrorState] = useState('');
+  const [userNameState, setUserNameStater] = useState('');
   const togglePassword = () => setShowPasswordState(!showPasswordState);
   const manageLoginModal = useModal();
   const manageRegisterModal = useModal();
@@ -46,16 +46,16 @@ const Header = () => {
     }
   }, [managePasswordInput, manageConfirmPasswordInput]);
 
-  useEffect(() => {
-    manageConfirmPasswordInput.setValueState("");
-    managePasswordInput.setValueState("");
-    manageEmailInput.setValueState("");
-    manageUserNameInput.setValueState("");
-  });
+  // useEffect(() => {
+  //   manageConfirmPasswordInput.setValueState("");
+  //   managePasswordInput.setValueState("");
+  //   manageEmailInput.setValueState("");
+  //   manageUserNameInput.setValueState("");
+  // });
 
   useEffect(() => {
     if (ctx.userState) {
-      setIsLoggedIn(ctx.userState.hasOwnProperty("user"));
+      setIsLoggedIn(ctx.userState.hasOwnProperty('user'));
       setIsAdmin(!isObjectEmpty(ctx.userState) && ctx.userState.admin === true);
     }
   }, [ctx.userState]);
@@ -64,19 +64,17 @@ const Header = () => {
   const eyeSlash = (
     <FontAwesomeIcon icon={faEyeSlash} onClick={togglePassword} />
   );
-  console.log(ctx.userState);
-
   return (
     <Context.Consumer>
       {(ctx) => {
         return (
           <header>
-            <nav class="navigation">
-              <button className="btn">
-                <Link to="/"> home </Link>
+            <nav class='navigation'>
+              <button className='btn'>
+                <Link to='/'> home </Link>
               </button>
               <button
-                className="hamburger"
+                className='hamburger'
                 onClick={() => {
                   setShowNavState(!showNavState);
                 }}
@@ -86,28 +84,28 @@ const Header = () => {
               <div
                 className={
                   showNavState
-                    ? "navigation-menu expanded dropdown-shadow"
-                    : " navigation-menu"
+                    ? 'navigation-menu expanded dropdown-shadow'
+                    : ' navigation-menu'
                 }
               >
                 <ul>
-                  {isAdmin && <adminHeader></adminHeader>}
+                  {isAdmin && <AdminHeader></AdminHeader>}
                   {!isLoggedIn && (
                     <ul>
                       <li>
                         <button
-                          className="btn "
+                          className='btn '
                           onClick={manageLoginModal.Toggle}
                         >
-                          sign up
+                          Login
                         </button>
                       </li>
                       <li>
                         <button
-                          className="btn "
+                          className='btn '
                           onClick={manageRegisterModal.Toggle}
                         >
-                          sign up
+                          Sign Up
                         </button>
                       </li>
                     </ul>
@@ -117,55 +115,55 @@ const Header = () => {
             </nav>
             <Modal
               display={manageRegisterModal.modal}
-              title="Register"
+              title='Register'
               close={manageRegisterModal.Toggle}
               className={manageRegisterModal.modalClasses}
             >
-              <UserForm title="register" toggle={manageRegisterModal.Toggle}>
+              <UserForm title='register' toggle={manageRegisterModal.Toggle}>
                 {errorState && <p>{errorState}</p>}
                 <Form
-                  label="Enter your email"
-                  id="email"
-                  type="email"
+                  label='Enter your email'
+                  id='email'
+                  type='email'
                   onBlur={manageEmailInput.onBlur}
                   onChange={manageEmailInput.valueChangeHandler}
-                  value={manageEmailInput.value}
+                  value={manageEmailInput.valueState}
                   hasError={manageEmailInput.hasError}
-                  errortext="please enter a valid email address"
+                  errortext='please enter a valid email address'
                 />
                 <Form
-                  label="User Name"
-                  id="username"
-                  type="email"
+                  label='User Name'
+                  id='username'
+                  type='email'
+                  value={manageUserNameInput.valueState}
                   onBlur={manageEmailInput.onBlur}
                   onChange={manageUserNameInput.valueChangeHandler}
-                  value={manageUserNameInput.value}
-                  errortext="Invalid User Name"
+                  errortext='Invalid User Name'
                 />
                 <Form
-                  label="Password"
-                  id="password"
-                  type={showPasswordState ? "text" : "password"}
+                  label='Password'
+                  id='password'
+                  type={showPasswordState ? 'text' : 'password'}
                   onBlur={managePasswordInput.onBlur}
                   onChange={managePasswordInput.valueChangeHandler}
-                  value={managePasswordInput.value}
+                  value={managePasswordInput.valueState}
                   icon={showPasswordState ? eye : eyeSlash}
-                  errortext="Invalid Password"
+                  errortext='Invalid Password'
                 ></Form>
                 <Form
-                  className="input-field"
-                  label="comfirm password"
-                  id="confirm password"
-                  type={showPasswordState ? "text" : "password"}
+                  className='input-field'
+                  label='comfirm password'
+                  id='confirm password'
+                  type={showPasswordState ? 'text' : 'password'}
                   onBlur={manageConfirmPasswordInput.onBlur}
                   onChange={manageConfirmPasswordInput.valueChangeHandler}
-                  value={manageConfirmPasswordInput.value}
+                  value={manageConfirmPasswordInput.valueState}
                   showPassword={togglePassword}
                   icon={showPasswordState ? eye : eyeSlash}
                 />
                 {!compareState && <p>passwords must match</p>}
                 <button
-                  className="btn"
+                  className='btn'
                   onClick={(e) => {
                     e.preventDefault();
                     let response = registerUser(
@@ -175,16 +173,16 @@ const Header = () => {
                     );
                     ctx.setUserState(response);
                     if (!ctx.userState) {
-                      setErrorState("Sign up failed, please try again");
-                      manageConfirmPasswordInput.setValueState("");
-                      managePasswordInput.setValueState("");
-                      manageEmailInput.setValueState("");
-                      manageUserNameInput.setValueState("");
+                      setErrorState('Sign up failed, please try again');
+                      manageConfirmPasswordInput.setValueState('');
+                      managePasswordInput.setValueState('');
+                      manageEmailInput.setValueState('');
+                      manageUserNameInput.setValueState('');
                     } else {
-                      manageConfirmPasswordInput.setValueState("");
-                      managePasswordInput.setValueState("");
-                      manageEmailInput.setValueState("");
-                      manageUserNameInput.setValueState("");
+                      manageConfirmPasswordInput.setValueState('');
+                      managePasswordInput.setValueState('');
+                      manageEmailInput.setValueState('');
+                      manageUserNameInput.setValueState('');
                       manageRegisterModal.Toggle();
                     }
                   }}
@@ -196,51 +194,50 @@ const Header = () => {
 
             <Modal
               display={manageLoginModal.modal}
-              title="Login"
+              title='Login'
               close={manageLoginModal.Toggle}
             >
               <UserForm
                 apiCallToSubmitForm={logInUser}
-                title="LogIn"
+                title='LogIn'
                 toggle={manageLoginModal.Toggle}
               >
                 <Form
-                  label="Enter your email"
-                  id="email"
-                  type="email"
+                  label='Enter your email'
+                  id='email'
+                  type='email'
                   onBlur={manageEmailInput.onBlur}
-                  onChange={manageEmailInput.onChange}
-                  value={manageEmailInput.value}
+                  onChange={manageEmailInput.valueChangeHandler}
+                  value={manageEmailInput.valueState}
                 />
                 <Form
-                  label="Password"
-                  id="password"
-                  type={showPasswordState ? "text" : "password"}
+                  label='Password'
+                  id='password'
+                  type={showPasswordState ? 'text' : 'password'}
                   onBlur={managePasswordInput.onBlur}
-                  onChange={managePasswordInput.onChange}
-                  value={managePasswordInput.value}
+                  onChange={managePasswordInput.valueChangeHandler}
+                  value={managePasswordInput.valueState}
                   icon={showPasswordState ? eye : eyeSlash}
                 />
 
                 <div>
                   <button
-                    className="btn"
+                    className='btn'
                     onClick={(e) => {
                       e.preventDefault();
-                      ctx.setUserState("Hazel");
-                      console.log(ctx.userState);
-                      // logInUser(
-                      //   loginFormTotalState.userName,
-                      //   loginFormTotalState.password
-                      // );
+
+                      logInUser(
+                        manageUserNameInput.valueState,
+                        managePasswordInput.valueState
+                      );
                     }}
                   >
                     login
                   </button>
                 </div>
                 <div>
-                  <button className="btn"> Forgot Password</button>
-                  <button className="btn"> Forgot Usename</button>
+                  <button className='btn'> Forgot Password</button>
+                  <button className='btn'> Forgot Usename</button>
                 </div>
                 <div></div>
               </UserForm>

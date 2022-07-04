@@ -30,7 +30,7 @@ const Footer = (props) => {
 
       <ul className="social-list">
         <li className="social-list__item">
-          <a className="social-list__link" href="https://codepen.io/void-iros">
+          <a className="social-list__link" href="http://codepen.io/void-iros">
             <FontAwesomeIcon icon={faCodepen} />
           </a>
         </li>
@@ -89,7 +89,6 @@ const Footer = (props) => {
                 manageEmailAddressInput.valueState
               );
               setEmailState(response);
-              console.log(emailState);
               if (!emailState) {
                 setErroMessageState("Please retry");
               } else {

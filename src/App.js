@@ -10,7 +10,7 @@ import EditPortfolio from "./pages/EditPortfolio";
 import IndividualBlogPage from "./pages/IndividualBlogPage";
 import axios from "axios";
 import AllBlogs from "./pages/AllBlogs";
-const url = "https://evening-crag-18215.herokuapp.com";
+const url = "http://localhost:4500/";
 
 export const Context = createContext({
   userState: false,

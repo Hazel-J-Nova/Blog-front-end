@@ -20,7 +20,7 @@ const BlogForm = () => {
 
     let formData = new FormData();
     let fileData = formInfo.image;
-    let sendUrl = `https://evening-crag-18215.herokuapp.com/admin/blog`;
+    let sendUrl = `http://localhost:4500/admin/blog`;
     formData.append("image", fileData);
     formData.append("title", formInfo.blogTitle);
     formData.append("body", formInfo.blogBody);
@@ -48,14 +48,11 @@ const BlogForm = () => {
   };
   const handleChange = (event) => {
     setFormInfo((prevFormData) => {
-      console.log(formInfo);
       return { ...prevFormData, [event.target.name]: event.target.value };
     });
   };
   const handleFileChange = (event) => {
     setFormInfo((prevFormData) => {
-      console.log(event.target.files[0]);
-
       return { ...prevFormData, [event.target.name]: event.target.files[0] };
     });
   };

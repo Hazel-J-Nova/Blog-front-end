@@ -5,7 +5,7 @@ import Footer from "../components/Main/Footer";
 import IndividualBlog from "./IndividualBlog";
 
 import axios from "axios";
-const url = "https://evening-crag-18215.herokuapp.com/";
+const url = "http://localhost:4500//";
 const IndividualBlogPage = () => {
   const id = useParams();
   const [commentState, setCommentState] = useState([]);
@@ -13,7 +13,7 @@ const IndividualBlogPage = () => {
   useEffect(() => {
     const blog = async () => {
       const singleBlog = await axios.get(
-        `https://evening-crag-18215.herokuapp.com/admin/blog/${id.id}`
+        `http://localhost:4500//admin/blog/${id.id}`
       );
       setBlogState({ ...singleBlog.data });
       setCommentState(blogState.comments);

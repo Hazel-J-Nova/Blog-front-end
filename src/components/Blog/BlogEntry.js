@@ -1,35 +1,44 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import "./BlogEntry.scss";
-import parse from "html-react-parser";
-import getAmountOfTime from "../../utils/date";
-import TextEditor from "../Forms/TextEditor";
-import axios from "axios";
+import { useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import './BlogEntry.scss';
+import parse from 'html-react-parser';
+import getAmountOfTime from '../../utils/date';
+import TextEditor from '../Forms/TextEditor';
+import axios from 'axios';
+import { Context } from '../../App';
 
 const BlogEntry = (props) => {
+  const ctx = useContext(Context);
+
+  useEffect(() => {
+    if (ctx.userState) {
+      setIsLoggedIn(ctx.userState.hasOwnProperty('user'));
+      setIsAdmin(!isObjectEmpty(ctx.userState) && ctx.userState.admin === true);
+    }
+  }, [ctx.userState]);
   const [formInfo, setFormInfo] = useState({
-    commentBody: "",
+    commentBody: '',
   });
 
   const axiosSubmit = (event) => {
     event.preventDefault();
 
-    let sendUrl = `https://evening-crag-18215.herokuapp.com`;
+    let sendUrl = `http://localhost:4500/`;
 
     axios({
-      method: "POST",
+      method: 'POST',
       url: sendUrl,
       data: formInfo,
 
       headers: {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
       },
     })
       .then((response) => {
         if (response.status === 200) {
-          console.log("Success, firm added");
+          console.log('Success, firm added');
         } else {
-          console.log("Error occurred");
+          console.log('Error occurred');
         }
       })
       .catch((e) => {
@@ -52,20 +61,20 @@ const BlogEntry = (props) => {
   );
 
   const textEdditor = props.singleBlog ? (
-    <div className="form-group">
-      <label htmlFor="project-body">Blog body</label>
+    <div className='form-group'>
+      <label htmlFor='project-body'>Blog body</label>
 
       <TextEditor
-        className="form-control text-area"
-        id="commentBody"
-        name="commentBody"
+        className='form-control text-area'
+        id='commentBody'
+        name='commentBody'
         onChange={handleChange}
         value={formInfo.commentBody}
         getBlogBody={setFormInfo}
         formInfo={formInfo}
         body={formInfo.commentBody}
       />
-      <button onClick={axiosSubmit} className="btn btn-primary">
+      <button onClick={axiosSubmit} className='btn btn-primary'>
         submit
       </button>
     </div>
@@ -85,45 +94,43 @@ const BlogEntry = (props) => {
 
   return (
     <div>
-      <div className="blog-container">
-        <div className="blog-header">
+      <div className='blog-container'>
+        <div className='blog-header'>
           <div>
-            <div className="blog-author--no-cover">
+            <div className='blog-author--no-cover'>
               <h4>Hazel Tate</h4>
             </div>
           </div>
         </div>
 
-        <div className="blog-body">
-          <div className="blog-title">
+        <div className='blog-body'>
+          <div className='blog-title'>
             <h4>{props.individualBlogState.title}</h4>
           </div>
-          <div className="blog-summary">
+          <div className='blog-summary'>
             <p>{props.individualBlogState.introText}</p>
             {fullBlogOrBlogLink}
           </div>
-          <div className="blog-tags">
-            {" "}
-            <ul>{tagArray}</ul>{" "}
+          <div className='blog-tags'>
+            {' '}
+            <ul>{tagArray}</ul>{' '}
           </div>
         </div>
 
-        <div className="blog-footer">
+        <div className='blog-footer'>
           <ul>
-            <li className="published-date">
+            <li className='published-date'>
               {timeSincePosted} {timeSincePostedFormatting}
             </li>
-            <li className="comments">
-              <a href="#">
-                <svg className="icon-bubble"></svg>
-                <span className="numero"></span>
+            <li className='comments'>
+              <a href='#'>
+                <svg className='icon-bubble'></svg>
+                <span className='numero'></span>
               </a>
             </li>
-            <li className="shares">
-              <a href="#">
-                <svg className="icon-star"></svg>
-                <span className="numero"></span>
-              </a>
+            <li className='shares'>
+              <svg className='icon-star'></svg>
+              <span className='numero'></span>
             </li>
           </ul>
         </div>

@@ -19,7 +19,7 @@ const AddPortfolio = () => {
 
     let formData = new FormData();
     let fileData = formInfo.image;
-    let sendUrl = `https://evening-crag-18215.herokuapp.com/admin/portfolio`;
+    let sendUrl = `http://localhost:4500/admin/portfolio`;
     formData.append("image", fileData);
     formData.append("title", formInfo.title);
     formData.append("alt", formInfo.alt);

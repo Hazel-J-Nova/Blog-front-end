@@ -1,19 +1,19 @@
-import Intro from "../components/Main/Intro";
-import AboutMe from "../components/Main/AboutMe";
-import Grid from "../components/Main/grid";
-import Services from "../components/Main/services";
-import Header from "../components/Main/Header";
-import PortfolioGrid from "../components/Main/PortGrid";
-import PortfolioItem from "../components/Main/PortItem";
-import Footer from "../components/Main/Footer";
-import React, { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import Blog from "../components/Main/BlogCard";
-import axios from "axios";
-import { Context } from "../App";
-import { getPortfolioItems } from "../utils/api";
+import Intro from '../components/Main/Intro';
+import AboutMe from '../components/Main/AboutMe';
+import Grid from '../components/Main/grid';
+import Services from '../components/Main/services';
+import Header from '../components/Main/Header';
+import PortfolioGrid from '../components/Main/PortGrid';
+import PortfolioItem from '../components/Main/PortItem';
+import Footer from '../components/Main/Footer';
+import React, { useEffect, useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import Blog from '../components/Main/BlogCard';
+import axios from 'axios';
+import { Context } from '../App';
+import { getPortfolioItems } from '../utils/api';
 
-const url = "https://evening-crag-18215.herokuapp.com/";
+const url = 'http://localhost:4500/';
 
 const Main = ({ userState, setUserState }) => {
   const [portfolioState, setPortfolioState] = useState([]);
@@ -39,13 +39,13 @@ const Main = ({ userState, setUserState }) => {
   const blogsToRender = blogState.slice(0, 4).map((el) => {
     return (
       <Blog
-        imgUrl={""}
+        imgUrl={''}
         blogTitle={el.title}
         intoText={el.intro}
         key={el._id}
         blogLink={el._id}
       >
-        {" "}
+        {' '}
         {/* {el.img.url} */}
       </Blog>
     );
@@ -61,6 +61,7 @@ const Main = ({ userState, setUserState }) => {
   });
 
   const value = useContext(Context);
+  console.log(value);
   return (
     <div>
       <Header user={userState} setUserState={setUserState} />
@@ -69,10 +70,10 @@ const Main = ({ userState, setUserState }) => {
       <Services></Services>
       <Grid>{blogsToRender}</Grid>
       <Link to={`blogs`} blogstate={blogState}>
-        <h1 className="centered">All Blogs</h1>
+        <h1 className='centered'>All Blogs</h1>
       </Link>
       <PortfolioGrid>{portfolioToDisplay}</PortfolioGrid>
-      <Footer />{" "}
+      <Footer />{' '}
     </div>
   );
 };

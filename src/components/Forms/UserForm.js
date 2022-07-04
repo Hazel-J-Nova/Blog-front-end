@@ -13,7 +13,7 @@ const UserForm = ({ title, toggle, children }) => {
             className="position-close"
             onClick={toggle}
           />
-          ;
+
           <form>
             <div className="card-body form-container">
               <h5 className="card-title">{title}</h5>

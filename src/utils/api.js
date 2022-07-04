@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = "https://evening-crag-18215.herokuapp.com";
+const url = "http://localhost:4500";
 
 export const logInUser = async (username, password) => {
   try {
