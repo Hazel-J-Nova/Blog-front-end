@@ -63,7 +63,6 @@ const Header = () => {
   const eyeSlash = (
     <FontAwesomeIcon icon={faEyeSlash} onClick={togglePassword} />
   );
-  console.log(ctx);
   return (
     <Context.Consumer>
       {(ctx) => {
@@ -96,7 +95,6 @@ const Header = () => {
                         onClick={() => {
                           logOutUser();
                           ctx.userState = {};
-                          console.log(ctx.userState);
                         }}
                       >
                         Logout
@@ -198,7 +196,7 @@ const Header = () => {
                       managePasswordInput.setValueState('');
                       manageEmailInput.setValueState('');
                       manageUserNameInput.setValueState('');
-                      manageRegisterModal.Toggle();
+                      manageLoginModal.Toggle();
                     }
                   }}
                 >
@@ -211,12 +209,14 @@ const Header = () => {
               display={manageLoginModal.modal}
               title='Login'
               close={manageLoginModal.Toggle}
+              className={manageLoginModal.modalClasses}
             >
               <UserForm
                 apiCallToSubmitForm={logInUser}
                 title='LogIn'
                 toggle={manageLoginModal.Toggle}
               >
+                {errorState && <p>{errorState}</p>}
                 <Form
                   label='Enter Your User Name'
                   id='username'
@@ -240,11 +240,21 @@ const Header = () => {
                     className='btn'
                     onClick={(e) => {
                       e.preventDefault();
-                      console.log('farts');
-                      logInUser(
+                      let response = logInUser(
                         manageUserNameInput.valueState,
                         managePasswordInput.valueState
                       );
+                      ctx.setUserState(response);
+                      if (!ctx.userState) {
+                        setErrorState('Login failed, please try again');
+
+                        managePasswordInput.setValueState('');
+                        manageUserNameInput.setValueState('');
+                      } else {
+                        managePasswordInput.setValueState('');
+                        manageUserNameInput.setValueState('');
+                        manageLoginModal.Toggle();
+                      }
                     }}
                   >
                     login
