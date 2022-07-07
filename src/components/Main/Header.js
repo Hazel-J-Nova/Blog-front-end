@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import Modal from '../Forms/Modal';
 import UserForm from '../Forms/UserForm';
 import { Link } from 'react-router-dom';
-import { logInUser, registerUser } from '../../utils/api';
+import { logInUser, registerUser, logOutUser } from '../../utils/api';
 import { Context } from '../../App';
 import Form from '../Forms/Form';
 import useModal from '../../utils/Hooks/useModal';
@@ -22,7 +22,6 @@ const Header = () => {
   const [showPasswordState, setShowPasswordState] = useState(false);
   const [compareState, setCompareState] = useState(true);
   const [errorState, setErrorState] = useState('');
-  const [userNameState, setUserNameStater] = useState('');
   const togglePassword = () => setShowPasswordState(!showPasswordState);
   const manageLoginModal = useModal();
   const manageRegisterModal = useModal();
@@ -55,7 +54,7 @@ const Header = () => {
 
   useEffect(() => {
     if (ctx.userState) {
-      setIsLoggedIn(ctx.userState.hasOwnProperty('user'));
+      setIsLoggedIn(ctx.userState.hasOwnProperty('email'));
       setIsAdmin(!isObjectEmpty(ctx.userState) && ctx.userState.admin === true);
     }
   }, [ctx.userState]);
@@ -64,6 +63,7 @@ const Header = () => {
   const eyeSlash = (
     <FontAwesomeIcon icon={faEyeSlash} onClick={togglePassword} />
   );
+  console.log(ctx);
   return (
     <Context.Consumer>
       {(ctx) => {
@@ -89,6 +89,21 @@ const Header = () => {
                 }
               >
                 <ul>
+                  <ul>
+                    <li>
+                      <button
+                        className='btn '
+                        onClick={() => {
+                          logOutUser();
+                          ctx.userState = {};
+                          console.log(ctx.userState);
+                        }}
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+
                   {isAdmin && <AdminHeader></AdminHeader>}
                   {!isLoggedIn && (
                     <ul>
@@ -203,12 +218,12 @@ const Header = () => {
                 toggle={manageLoginModal.Toggle}
               >
                 <Form
-                  label='Enter your email'
-                  id='email'
+                  label='Enter Your User Name'
+                  id='username'
                   type='email'
-                  onBlur={manageEmailInput.onBlur}
-                  onChange={manageEmailInput.valueChangeHandler}
-                  value={manageEmailInput.valueState}
+                  onBlur={manageUserNameInput.onBlur}
+                  onChange={manageUserNameInput.valueChangeHandler}
+                  value={manageUserNameInput.valueState}
                 />
                 <Form
                   label='Password'
@@ -225,7 +240,7 @@ const Header = () => {
                     className='btn'
                     onClick={(e) => {
                       e.preventDefault();
-
+                      console.log('farts');
                       logInUser(
                         manageUserNameInput.valueState,
                         managePasswordInput.valueState

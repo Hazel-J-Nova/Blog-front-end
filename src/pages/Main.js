@@ -51,17 +51,17 @@ const Main = ({ userState, setUserState }) => {
     );
   });
   const portfolioToDisplay = portfolioState.map((el) => {
-    return;
-    <PortfolioItem
-      image={el.image}
-      alt={el.alt}
-      link={el.link}
-      key={el._id}
-    ></PortfolioItem>;
+    return (
+      <PortfolioItem
+        image={el.image}
+        alt={el.alt}
+        link={el.link}
+        key={el._id}
+      ></PortfolioItem>
+    );
   });
 
   const value = useContext(Context);
-  console.log(value);
   return (
     <div>
       <Header user={userState} setUserState={setUserState} />

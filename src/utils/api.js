@@ -1,25 +1,12 @@
-import axios from "axios";
-const url = "http://localhost:4500";
+import axios from 'axios';
+const url = 'http://localhost:4500';
 
 export const logInUser = async (username, password) => {
-  try {
-    const response = await axios.post(`${url}/users/login`, {
-      username,
-      password,
-    });
+  const formData = { username, password };
 
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    return "error";
-  }
-};
-
-export const registerUser = async (username, email, password) => {
-  const formData = { username, email, password };
   await axios({
-    method: "POST",
-    url: `${url}/users/register`,
+    method: 'POST',
+    url: `${url}/users/login`,
     data: formData,
   })
     .then((response) => {
@@ -27,16 +14,38 @@ export const registerUser = async (username, email, password) => {
         console.log(response.data);
         return response.data;
       } else {
-        console.log("Error occurred");
-        return "error ";
+        console.log('Error occurred');
+        return 'error ';
       }
     })
     .catch((e) => {
       console.log(e);
     });
 };
-const logOutUser = () => {
-  return null;
+
+export const registerUser = async (username, email, password) => {
+  const formData = { username, email, password };
+  await axios({
+    method: 'POST',
+    url: `${url}/users/register`,
+    data: formData,
+    credentials: true,
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        console.log(response.data);
+        return response.data;
+      } else {
+        console.log('Error occurred');
+        return 'error ';
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+export const logOutUser = async () => {
+  await axios.get(`${url}/users/logout`);
 };
 
 const deleteUser = () => {
