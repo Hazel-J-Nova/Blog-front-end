@@ -1,11 +1,11 @@
-import Header from "../components/Main/Header";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import Footer from "../components/Main/Footer";
-import IndividualBlog from "./IndividualBlog";
+import Header from '../components/Main/Header';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import Footer from '../components/Main/Footer';
+import IndividualBlog from './IndividualBlog';
 
-import axios from "axios";
-const url = "http://localhost:4500//";
+import axios from 'axios';
+// const url = "http://localhost:4500//";
 const IndividualBlogPage = () => {
   const id = useParams();
   const [commentState, setCommentState] = useState([]);
@@ -27,10 +27,10 @@ const IndividualBlogPage = () => {
       <IndividualBlog
         commentState={commentState}
         setCommentState={setCommentState}
-        title="words narg"
-        subTitle="short message"
-        intro="an intrp"
-        body="text for a body"
+        title='words narg'
+        subTitle='short message'
+        intro='an intrp'
+        body='text for a body'
       ></IndividualBlog>
       <Footer />
     </div>

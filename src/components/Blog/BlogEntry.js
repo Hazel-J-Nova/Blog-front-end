@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './BlogEntry.scss';
 import parse from 'html-react-parser';
 import getAmountOfTime from '../../utils/date';
@@ -24,7 +24,7 @@ const BlogEntry = ({
       setIsLoggedIn(ctx.userState.hasOwnProperty('user'));
       setIsAdmin(!isObjectEmpty(ctx.userState) && ctx.userState.admin === true);
     }
-  }, [ctx.userState]);
+  }, [ctx.userState, setIsAdmin, setIsLoggedIn]);
   const [formInfo, setFormInfo] = useState({
     commentBody: '',
   });
@@ -132,10 +132,10 @@ const BlogEntry = ({
               {timeSincePosted} {timeSincePostedFormatting}
             </li>
             <li className='comments'>
-              <a href='#'>
+              {/* <a href='#'>
                 <svg className='icon-bubble'></svg>
                 <span className='numero'></span>
-              </a>
+              </a> */}
             </li>
             <li className='shares'>
               <svg className='icon-star'></svg>
