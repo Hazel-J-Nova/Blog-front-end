@@ -68,7 +68,7 @@ const Header = () => {
       {(ctx) => {
         return (
           <header>
-            <nav class='navigation'>
+            <nav className='navigation'>
               <button className='btn'>
                 <Link to='/'> home </Link>
               </button>

@@ -17,7 +17,7 @@ const url = 'http://localhost:4500/';
 
 const Main = ({ userState, setUserState }) => {
   const [portfolioState, setPortfolioState] = useState([]);
-  const [hasInterAcctedState, setInterAcctedState] = useState(false);
+  // const [hasInterAcctedState, setInterAcctedState] = useState(false);
   const [blogState, setBlogState] = useState([]);
 
   useEffect(() => {
@@ -61,7 +61,6 @@ const Main = ({ userState, setUserState }) => {
     );
   });
 
-  const value = useContext(Context);
   return (
     <div>
       <Header user={userState} setUserState={setUserState} />

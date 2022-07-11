@@ -48,19 +48,19 @@ export const logOutUser = async () => {
   await axios.get(`${url}/users/logout`);
 };
 
-const deleteUser = () => {
+export const deleteUser = () => {
   return null;
 };
 
-const postNewBlogEntry = () => {
+export const postNewBlogEntry = () => {
   return null;
 };
 
-const deleteBlogEntry = () => {
+export const deleteBlogEntry = () => {
   return null;
 };
 
-const editBlogEntry = () => {
+export const editBlogEntry = () => {
   return null;
 };
 
@@ -79,7 +79,7 @@ export const getPortfolioItems = async () => {
   return portfolioItems;
 };
 
-const addNewPorfolioProject = () => {
+export const addNewPorfolioProject = () => {
   return null;
 };
 

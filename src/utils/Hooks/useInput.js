@@ -1,7 +1,7 @@
-import { useState, useCallback } from "react";
+import { useState } from 'react';
 
 const useInput = (isValueValidCheck) => {
-  const [valueState, setValueState] = useState("");
+  const [valueState, setValueState] = useState('');
   const [isTouchedState, setIsTouchedState] = useState(false);
 
   const isValueValid = isValueValidCheck(valueState);
@@ -15,7 +15,7 @@ const useInput = (isValueValidCheck) => {
   };
 
   const reset = () => {
-    setValueState("");
+    setValueState('');
     setIsTouchedState(false);
   };
 

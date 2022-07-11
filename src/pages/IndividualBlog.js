@@ -1,19 +1,19 @@
-import CommentCard from "../components/Blog/CommentCard";
-import Modal from "../components/Forms/Modal";
-import { Context } from "../App";
-import useModal from "../utils/Hooks/useModal";
-import validators from "../utils/validators";
-import UserForm from "../components/Forms/UserForm";
-import { addNewComment, getAllComments } from "../utils/api";
-import { useState, useEffect } from "react";
-import useInput from "../utils/Hooks/useInput";
+import CommentCard from '../components/Blog/CommentCard';
+import Modal from '../components/Forms/Modal';
+import { Context } from '../App';
+import useModal from '../utils/Hooks/useModal';
+import validators from '../utils/validators';
+import UserForm from '../components/Forms/UserForm';
+import { addNewComment, getAllComments } from '../utils/api';
+import { useState, useEffect } from 'react';
+import useInput from '../utils/Hooks/useInput';
 
 const IndividualBlog = (props) => {
   const manageCommentModal = useModal();
   const manageComentInput = useInput(validators.validateMessage);
 
   const [apiCall, setApiCall] = useState(false);
-  const [errorMessageState, setErroMessageState] = useState("");
+  const [errorMessageState, setErroMessageState] = useState('');
   const [commentState, setCommentState] = useState([]);
 
   useEffect(() => {
@@ -43,55 +43,56 @@ const IndividualBlog = (props) => {
   return (
     <Context.Consumer>
       {(ctx) => {
-        <section class="about-me">
-          <h1 class="section__title section__title--about">{props.title}</h1>
-          <p class="section__subtitle section__subtitle--about">
+        <section class='about-me'>
+          <h1 class='section__title section__title--about'>{props.title}</h1>
+          <p class='section__subtitle section__subtitle--about'>
             {props.subTitle}
           </p>
-          <div className="about-me__body">{props.body}</div>
-          <img src={props.url} class="about-me__img" alt={props.alt} />
+          <div className='about-me__body'>{props.body}</div>
+          <img src={props.url} class='about-me__img' alt={props.alt} />
           <div>{comments}</div>
-          {ctx.userState.hasOwnProperty("user") && (
-            <button className="btn" onClick={manageCommentModal.Toggle}>
+          {ctx.userState.hasOwnProperty('user') && (
+            <button className='btn' onClick={manageCommentModal.Toggle}>
               add a comment
             </button>
           )}
           <Modal
             display={manageCommentModal.modal}
-            title="Comment"
+            title='Comment'
             close={manageComentInput}
             className={manageCommentModal.modalClasses}
           >
             <div>
               <UserForm
-                title="add a comment"
+                title='add a comment'
                 toggle={manageCommentModal.Toggle}
               >
+                {errorMessageState}
                 <textarea
-                  name="message"
-                  id="message"
-                  className="text-Area"
+                  name='message'
+                  id='message'
+                  className='text-Area'
                   onBlur={manageComentInput.onBlur}
                   onChange={manageComentInput.valueChangeHandler}
                   value={manageComentInput.valueState}
                   hasError={manageComentInput.hasError}
-                  errotText="Message must not be empty"
+                  errotText='Message must not be empty'
                 ></textarea>
                 <button
-                  className="btn"
+                  className='btn'
                   onClick={(e) => {
                     e.preventDefault();
-                    setErroMessageState("");
+                    setErroMessageState('');
                     let response = addNewComment(
                       manageComentInput.valueState,
                       ctx.userState
                     );
                     setApiCall(response);
                     if (!apiCall) {
-                      setErroMessageState("Please retry");
+                      setErroMessageState('Please retry');
                     } else {
                       setApiCall(false);
-                      manageComentInput.setValueState("");
+                      manageComentInput.setValueState('');
                       manageCommentModal.Toggle();
                     }
                   }}
