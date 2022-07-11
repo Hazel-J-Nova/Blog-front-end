@@ -83,16 +83,16 @@ export const addNewPorfolioProject = () => {
   return null;
 };
 
-const deletePorfolioProject = () => {
+export const deletePorfolioProject = () => {
   return null;
 };
 
-const editPortfolioProject = () => {
+export const editPortfolioProject = () => {
   return null;
 };
 
 export const addNewComment = async (comment, userId) => {
-  const newComment = await axios
+  await axios
     .post(`${url}/admin/comment`, {
       message: comment,
       user: userId,

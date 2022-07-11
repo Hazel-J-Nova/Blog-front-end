@@ -6,11 +6,10 @@ import Header from '../components/Main/Header';
 import PortfolioGrid from '../components/Main/PortGrid';
 import PortfolioItem from '../components/Main/PortItem';
 import Footer from '../components/Main/Footer';
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Blog from '../components/Main/BlogCard';
 import axios from 'axios';
-import { Context } from '../App';
 import { getPortfolioItems } from '../utils/api';
 
 const url = 'http://localhost:4500/';
