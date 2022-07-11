@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const adminHeader = () => {
+const AdminHeader = () => {
   return (
     <ul>
       <li>
@@ -17,4 +17,4 @@ const adminHeader = () => {
   );
 };
 
-export default adminHeader;
+export default AdminHeader;

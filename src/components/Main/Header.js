@@ -89,17 +89,19 @@ const Header = () => {
               >
                 <ul>
                   <ul>
-                    <li>
-                      <button
-                        className='btn '
-                        onClick={() => {
-                          logOutUser();
-                          ctx.userState = {};
-                        }}
-                      >
-                        Logout
-                      </button>
-                    </li>
+                    {isLoggedIn && (
+                      <li>
+                        <button
+                          className='btn '
+                          onClick={() => {
+                            logOutUser();
+                            ctx.userState = {};
+                          }}
+                        >
+                          Logout
+                        </button>
+                      </li>
+                    )}
                   </ul>
 
                   {isAdmin && <AdminHeader></AdminHeader>}

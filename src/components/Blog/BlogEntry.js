@@ -6,8 +6,17 @@ import getAmountOfTime from '../../utils/date';
 import TextEditor from '../Forms/TextEditor';
 import axios from 'axios';
 import { Context } from '../../App';
+import isObjectEmpty from '../../utils/isObjectEmpty';
 
-const BlogEntry = (props) => {
+const BlogEntry = ({
+  children,
+  Link,
+  setIsLoggedIn,
+  setIsAdmin,
+  blogBody,
+  individualBlogState,
+  singleBlog,
+}) => {
   const ctx = useContext(Context);
 
   useEffect(() => {
@@ -52,15 +61,15 @@ const BlogEntry = (props) => {
     });
   };
 
-  const fullBlogOrBlogLink = props.blogBody ? (
-    <p>{parse(props.individualBlogState.body)}</p>
+  const fullBlogOrBlogLink = blogBody ? (
+    <p>{parse(individualBlogState.body)}</p>
   ) : (
     <h4>
-      <Link to={`/blog/${props.individualBlogState._id}`}>{props.Link}</Link>
+      <Link to={`/blog/${individualBlogState._id}`}>{Link}</Link>
     </h4>
   );
 
-  const textEdditor = props.singleBlog ? (
+  const textEdditor = singleBlog ? (
     <div className='form-group'>
       <label htmlFor='project-body'>Blog body</label>
 
@@ -81,13 +90,13 @@ const BlogEntry = (props) => {
   ) : null;
 
   const today = new Date();
-  const datePosted = new Date(props.individualBlogState.date);
+  const datePosted = new Date(individualBlogState.date);
   const [timeSincePosted, timeSincePostedFormatting] = getAmountOfTime(
     today,
     datePosted
   );
 
-  let tags = JSON.parse(JSON.stringify(props.individualBlogState.tags));
+  let tags = JSON.parse(JSON.stringify(individualBlogState.tags));
   const tagArray = tags.map((el) => {
     return <li>{el}</li>;
   });
@@ -105,10 +114,10 @@ const BlogEntry = (props) => {
 
         <div className='blog-body'>
           <div className='blog-title'>
-            <h4>{props.individualBlogState.title}</h4>
+            <h4>{individualBlogState.title}</h4>
           </div>
           <div className='blog-summary'>
-            <p>{props.individualBlogState.introText}</p>
+            <p>{individualBlogState.introText}</p>
             {fullBlogOrBlogLink}
           </div>
           <div className='blog-tags'>
@@ -134,7 +143,7 @@ const BlogEntry = (props) => {
             </li>
           </ul>
         </div>
-        <> {props.children} </>
+        <> {children} </>
         {textEdditor}
       </div>
     </div>
